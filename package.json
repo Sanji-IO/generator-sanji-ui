@@ -1,0 +1,35 @@
+{
+  "name": "generator-sanji-ui",
+  "version": "1.0.0",
+  "description": "Sanji UI generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "zack9433/generator-sanji-ui",
+  "author": {
+    "name": "Zack Yang",
+    "email": "zack9433@gmail.com",
+    "url": "https://github.com/zack9433"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "~0.20.3",
+    "github": "~0.2.4",
+    "chalk": "~1.1.1",
+    "yosay": "~1.0.5",
+    "lodash": "~3.10.1",
+    "npm-name": "~1.1.1",
+    "superb": "~1.2.0",
+    "underscore.string": "~3.2.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.2.5"
+  }
+}

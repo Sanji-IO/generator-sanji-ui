@@ -1,0 +1,23 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "node": 1,
+    "browser": 1,
+    "es6": 1
+  },
+  "globals": {
+    "angular": 1
+  },
+  "rules": {
+    "quotes": [2, "single", "avoid-escape"],
+    "eqeqeq": 0,
+    "no-use-before-define": 0,
+    "no-shadow": 0,
+    "brace-style": [2, "stroustrup"],
+    "eol-last": 0,
+    "no-nested-ternary": 1,
+    "padded-blocks": [1, "never"],
+    "space-before-function-paren": [1, "never"],
+    "space-before-blocks": [1, "always"]
+  }
+}

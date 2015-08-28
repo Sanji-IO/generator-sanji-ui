@@ -1,0 +1,8 @@
+node_modules/
+*.*.swp
+*.*.swo
+.DS_Store
+.tern-project
+bower_components/
+npm-debug.log
+demo

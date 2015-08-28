@@ -1,0 +1,11 @@
+<script type ="text/ng-template" id="<%= appname %>-main.tpl.html">
+  <div ng-controller="<%= controllerClassName %> as vm"
+    ng-switch="sanjiWindowMgr.getWindowStatus()">
+    <div ng-switch-when="sanji-info">
+      <div ng-include="'<%= appname %>-info.tpl.html'"></div>
+    </div>
+    <div ng-switch-when="sanji-edit">
+      <div ng-include="'<%= appname %>-edit.tpl.html'"></div>
+    </div>
+  </div>
+</script>
