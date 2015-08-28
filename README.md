@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-```shell
+```sh
 yo sanji-ui
 ```
 
