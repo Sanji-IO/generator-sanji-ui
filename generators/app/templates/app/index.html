@@ -10,6 +10,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
   <title><%= appname %> config ui</title>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic">
 </head>
 
 <body ng-app="webapp">
@@ -18,18 +19,22 @@
   <![endif]-->
 
   <div class="container">
-    <div class="header">
-      <h3 class="text-muted"><%= appname %> config ui</h3>
-    </div>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h3><%= appname %> config ui</h3>
+      </div>
+    </md-toolbar>
 
-    <div class="row">
-      <div class="colet">
-        <<%= appname %>></<%= appname %>>
+    <div layout="row" layout-padding layout-align="center center">
+      <div flex="33">
+        <sanji-window title="<%= appname %>">
+          <<%= appname %>-container sanji-window-mgr="sanjiWindowMgr"></<%= appname %>-container>
+        </sanji-window>
       </div>
     </div>
 
-    <div class="footer">
-      <p><span class="glyphicon glyphicon-heart"></span> from the Sanji team</p>
+    <div layout="row" layout-align="center center">
+      <span class="md-caption">from the Sanji Team</span>
     </div>
   </div>
 

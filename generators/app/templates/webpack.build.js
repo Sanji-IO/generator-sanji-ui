@@ -8,9 +8,9 @@ var config = require('./webpack.config.js');
 
 config.devtool = 'source-map';
 config.entry = {
-  'sanji-ui': './sanji-<%= appname %>/index.js'
+  'sanji-ui': './component/index.js'
 };
-config.output.filename = 'sanji-<%= appname %>.js';
+config.output.filename = '<%= appname %>.js';
 config.output.libraryTarget = 'umd';
 
 config.module.loaders = [
@@ -21,7 +21,7 @@ config.module.loaders = [
 ].concat(config.module.loaders);
 
 config.plugins.push(
-  new ExtractTextPlugin('sanji-<%= appname %>.css'),
+  new ExtractTextPlugin('<%= appname %>.css'),
   new WebpackNotifierPlugin({title: 'Webpack'}),
   new webpack.optimize.DedupePlugin()
 );

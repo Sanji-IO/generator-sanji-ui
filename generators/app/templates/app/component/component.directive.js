@@ -6,10 +6,15 @@ class <%= directiveClassName %> {
       <%= directiveClassName %>[item] = injects[index];
       injectMap.set(<%= directiveClassName %>[item], injects[index]);
     });
-    this.template = `<sanji-window title="Ethernet"
-                      content-url="component-main.tpl.html">
-                      </sanji-window>`;
+    this.templateUrl = '<%= appname %>-main.tpl.html'
     this.restrict = 'EA';
+    this.controller = '<%= controllerClassName %>';
+    this.controllerAs = 'vm';
+    this.bindToController = true;
+    this.scope = {
+      ethernets: '=data',
+      sanjiWindowMgr: '='
+    }
   }
 
   static directiveFactory(...injects) {

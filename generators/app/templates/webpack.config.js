@@ -10,16 +10,14 @@ var config = {
   context: appRoot,
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'sanji-<%= appname %>.js'
+    filename: '<%= appname %>.js'
   },
   resolve: {
     root: [bowerRoot, nodeRoot],
     // npm-linked packages can locate missing dependencies in app's node_modules
     fallback: nodeRoot,
     alias: {
-      'angular-sanji-window': bowerRoot + '/angular-sanji-window/dist/sanji-window.js',
-      'angular-sanji-window.css': bowerRoot + '/angular-sanji-window/dist/sanji-window.css',
-      'bootstrap': bowerRoot + '/bootstrap/dist/css/bootstrap.min.css'
+      'angular-material.css': bowerRoot + '/angular-material/angular-material.css'
     },
     extensions: ['', '.js', '.json', 'html', 'scss', 'css']
   },

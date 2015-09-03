@@ -157,9 +157,12 @@ module.exports = generators.Base.extend({
         this.ngModuleName = 'sanji.' + props.moduleName;
         this.serviceClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Service';
         this.serviceName = props.moduleName.toLowerCase() + 'Service';
+        this.containerControllerClassName = _.capitalize(props.moduleName.toLowerCase())+ 'ContainerController';
         this.controllerClassName = _.capitalize(props.moduleName.toLowerCase())+ 'Controller';
-        this.directiveName = props.moduleName.toLowerCase();
+        this.containerDirectiveClassName = _.capitalize(props.moduleName.toLowerCase()) + 'ContainerDirective';
+        this.containerDirectiveName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Container';
         this.directiveClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Directive';
+        this.directiveName = 'sanji' + _.capitalize(props.moduleName.toLowerCase());
         done();
       }.bind(this));
     }
@@ -195,6 +198,7 @@ module.exports = generators.Base.extend({
       this.template('editorconfig', '.editorconfig');
       this.template('eslintrc', '.eslintrc');
       this.template('README.md');
+      this.template('index.js');
       this.template('webpack.config.js');
       this.template('webpack.build.js');
       this.template('webpack.dev.js');
@@ -208,15 +212,21 @@ module.exports = generators.Base.extend({
     app: function () {
       this.template('app/index.html');
       this.template('app/app.js');
+      this.template('app/app.scss');
     },
 
     component: function() {
+      this.template('app/component/component.scss');
+
       this.fs.copyTpl(
-        this.templatePath('app/component/component.service.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/' + this.appname + '/index.js'),
+        this.templatePath('app/component/index.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/index.js'),
         {
           ngModuleName: this.ngModuleName,
+          containerControllerClassName: this.containerControllerClassName,
           controllerClassName: this.controllerClassName,
+          containerDirectiveClassName: this.containerDirectiveClassName,
+          containerDirectiveName: this.containerDirectiveName,
           directiveClassName: this.directiveClassName,
           directiveName: this.directiveName,
           serviceClassName: this.serviceClassName,
@@ -226,7 +236,7 @@ module.exports = generators.Base.extend({
 
       this.fs.copyTpl(
         this.templatePath('app/component/component-edit.tpl.html'),
-        this.destinationPath(this.generatorsPrefix, 'app/' + this.appname + '/component-edit.tpl.html'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component-edit.tpl.html'),
         {
           appname: this.appname
         }
@@ -234,7 +244,7 @@ module.exports = generators.Base.extend({
 
       this.fs.copyTpl(
         this.templatePath('app/component/component-info.tpl.html'),
-        this.destinationPath(this.generatorsPrefix, 'app/' + this.appname + '/component-info.tpl.html'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component-info.tpl.html'),
         {
           appname: this.appname
         }
@@ -242,7 +252,7 @@ module.exports = generators.Base.extend({
 
       this.fs.copyTpl(
         this.templatePath('app/component/component-main.tpl.html'),
-        this.destinationPath(this.generatorsPrefix, 'app/' + this.appname + '/component-main.tpl.html'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component-main.tpl.html'),
         {
           appname: this.appname,
           controllerClassName: this.controllerClassName
@@ -250,17 +260,38 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
+        this.templatePath('app/component/component-container.controller.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component-container.controller.js'),
+        {
+          containerControllerClassName: this.containerControllerClassName,
+          serviceName: this.serviceName
+        }
+      );
+
+      this.fs.copyTpl(
         this.templatePath('app/component/component.controller.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/' + this.appname + '/component.controller.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component.controller.js'),
         {
           controllerClassName: this.controllerClassName
         }
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/component.directive.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/' + this.appname + '/component.directive.js'),
+        this.templatePath('app/component/component-container.directive.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component-container.directive.js'),
         {
+          containerControllerClassName: this.containerControllerClassName,
+          containerDirectiveClassName: this.containerDirectiveClassName,
+          appname: this.appname
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('app/component/component.directive.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component.directive.js'),
+        {
+          appname: this.appname,
+          controllerClassName: this.controllerClassName,
           directiveClassName: this.directiveClassName,
           directiveName: this.directiveName
         }
@@ -268,7 +299,7 @@ module.exports = generators.Base.extend({
 
       this.fs.copyTpl(
         this.templatePath('app/component/component.service.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/' + this.appname + '/component.service.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component.service.js'),
         {
           serviceClassName: this.serviceClassName,
           serviceName: this.serviceName

@@ -1,5 +1,5 @@
-import 'bootstrap';
-import 'angular-sanji-window.css';
+import 'angular-material.css';
+import './app.scss';
 import 'angular';
 import 'angular-sanji-window';
 import './component';
