@@ -26,7 +26,7 @@
     "README.md"
   ],
   "dependencies": {
-    "angular": "~1.4.4",
+    "angular": "~1.4.5",
     "angular-sanji-window": "https://github.com/Sanji-IO/angular-sanji-window.git#webpack-sanji-window"
   }
 }
