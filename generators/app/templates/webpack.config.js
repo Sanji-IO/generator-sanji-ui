@@ -3,7 +3,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var NODE_ENV = process.env.NODE_ENV;
-var bowerRoot = path.join(__dirname, 'bower_components');
 var nodeRoot = path.join(__dirname, 'node_modules');
 var appRoot = path.join(__dirname, 'app');
 var config = {
@@ -13,24 +12,33 @@ var config = {
     filename: '<%= appname %>.js'
   },
   resolve: {
-    root: [bowerRoot, nodeRoot],
+    root: [nodeRoot],
     // npm-linked packages can locate missing dependencies in app's node_modules
     fallback: nodeRoot,
     alias: {
-      'angular-material.css': bowerRoot + '/angular-material/angular-material.css'
+      'angular-material.css': nodeRoot + '/angular-material/angular-material.css',
+      'angular': nodeRoot + '/angular/angular.js',
+      'jquery': nodeRoot + '/jquery/dist/jquery.js'
     },
     extensions: ['', '.js', '.json', 'html', 'scss', 'css']
   },
-  resolveLoader: {
-    root: nodeRoot
-  },
   module: {
     preLoaders: [
-      {test: /\.js$/, loader: "eslint", exclude: /(node_modules|bower_components)/}
+      {test: /\.js$/, loader: "eslint", exclude: /(node_modules)/}
     ],
     loaders: [
-      {test: /\.js$/, loader: 'ng-annotate!babel', exclude: /(node_modules|bower_components)/},
-      {test: /\.html$/, loader: 'ng-cache?prefix=[dir]/[dir]', exclude: /(node_modules|bower_components)/}
+      {test: /\.js$/, loader: 'ng-annotate!babel', exclude: /(node_modules)/},
+      {
+        test: /\.js$/,
+        loader: 'babel?optional[]=runtime&stage=0',
+        include: /(angular-sanji-window)/
+      },
+      {
+        test: /\.html$/,
+        loader: 'ng-cache?prefix=[dir]/[dir]',
+        include: /(angular-sanji-window)/
+      },
+      {test: /\.html$/, loader: 'ng-cache?prefix=[dir]/[dir]', exclude: /(node_modules)/}
     ],
     noParse: []
   },
@@ -41,9 +49,6 @@ var config = {
       __DEV__: 'development' === NODE_ENV,
       __RELEASE__: 'production' === NODE_ENV
     }),
-    new webpack.ResolverPlugin(
-      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-    ),
     new webpack.NoErrorsPlugin()
   ]
 };

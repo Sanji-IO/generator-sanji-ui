@@ -1,3 +1,5 @@
+import sanjiWindow from 'angular-sanji-window';
+
 import './component-main.tpl.html';
 import './component-info.tpl.html';
 import './component-edit.tpl.html';
@@ -8,9 +10,10 @@ import <%= controllerClassName %> from './component.controller';
 import <%= containerDirectiveClassName %> from './component-container.directive';
 import <%= directiveClassName %> from './component.directive';
 
-angular.module('<%= ngModuleName %>', ['sanji.window'])
-  .service('<%= serviceName %>', <%= serviceClassName %>)
-  .controller('<%= containerControllerClassName %>', <%= containerControllerClassName %>)
-  .controller('<%= controllerClassName %>', <%= controllerClassName %>)
-  .directive('<%= containerDirectiveName %>', <%= containerDirectiveClassName %>.directiveFactory)
-  .directive('<%= directiveName %>', <%= directiveClassName%>.directiveFactory);
+let app = angular.module('<%= ngModuleName %>', [sanjiWindow]);
+app.service('<%= serviceName %>', <%= serviceClassName %>);
+app.controller('<%= containerControllerClassName %>', <%= containerControllerClassName %>);
+app.controller('<%= controllerClassName %>', <%= controllerClassName %>);
+app.directive('<%= containerDirectiveName %>', <%= containerDirectiveClassName %>.directiveFactory);
+app.directive('<%= directiveName %>', <%= directiveClassName%>.directiveFactory);
+export default app = app.name

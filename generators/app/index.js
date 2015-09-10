@@ -193,7 +193,6 @@ module.exports = generators.Base.extend({
   writing: {
     projectfiles: function () {
       this.template('_package.json', 'package.json');
-      this.template('_bower.json', 'bower.json');
       this.template('_travis.yml', '.travis.yml');
       this.template('editorconfig', '.editorconfig');
       this.template('eslintrc', '.eslintrc');
@@ -331,6 +330,6 @@ module.exports = generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies({ bower: true });
+    this.installDependencies({ bower: false });
   }
 });
