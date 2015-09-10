@@ -2,6 +2,7 @@
   "name": "<%= appname %>",
   "version": "1.0.0",
   "description": "<%= appname %> UI",
+  "main": "index",
   "scripts": {
     "test": "NODE_ENV=test karma start",
     "start": "NODE_ENV=development node server/dev-server.js",
