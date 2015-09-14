@@ -31,7 +31,6 @@
     "ng-annotate-loader": "0.0.10",
     "ng-cache-loader": "0.0.13",
     "node-bourbon": "~4.2.3",
-    "node-libs-browser": "~0.5.2",
     "node-sass": "~3.3.2",
     "phantomjs": "~1.9.18",
     "raw-loader": "~0.5.1",
