@@ -16,7 +16,10 @@ var config = {
     // npm-linked packages can locate missing dependencies in app's node_modules
     fallback: nodeRoot,
     alias: {
-      'angular-material.css': nodeRoot + '/angular-material/angular-material.css'
+      'angular-material.css': nodeRoot + '/angular-material/angular-material.css',
+      'angular-material-icons.css': nodeRoot + '/angular-material-icons/angular-material-icons.css',
+      'toastr.scss': nodeRoot + '/toastr/toastr.scss',
+      'svg-morpheus': nodeRoot + '/svg-morpheus/compile/unminified/svg-morpheus.js'
     },
     extensions: ['', '.js', '.json', 'html', 'scss', 'css']
   },
@@ -29,12 +32,18 @@ var config = {
       {
         test: /\.js$/,
         loader: 'babel?optional[]=runtime&stage=0',
-        include: /(angular-sanji-window)/
+        include: [
+          /(angular-sanji-window)/,
+          /(sanji-core-ui)/
+        ]
       },
       {
         test: /\.html$/,
         loader: 'ng-cache?prefix=[dir]/[dir]',
-        include: /(angular-sanji-window)/
+        include: [
+          /(angular-sanji-window)/,
+          /(sanji-core-ui)/
+        ]
       },
       {test: /\.html$/, loader: 'ng-cache?prefix=[dir]/[dir]', exclude: /(node_modules)/}
     ],

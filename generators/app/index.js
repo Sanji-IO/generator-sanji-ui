@@ -155,6 +155,7 @@ module.exports = generators.Base.extend({
 
       this.prompt(prompts, function (props) {
         this.ngModuleName = 'sanji.' + props.moduleName;
+        this.libraryName = 'sj' + _.capitalize(props.moduleName.toLowerCase());
         this.serviceClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Service';
         this.serviceName = props.moduleName.toLowerCase() + 'Service';
         this.containerControllerClassName = _.capitalize(props.moduleName.toLowerCase())+ 'ContainerController';
@@ -201,6 +202,8 @@ module.exports = generators.Base.extend({
       this.template('webpack.config.js');
       this.template('webpack.build.js');
       this.template('webpack.dev.js');
+      this.template('webpack.test.js');
+      this.template('karma.conf.js');
     },
 
     gitfiles: function () {
@@ -211,6 +214,7 @@ module.exports = generators.Base.extend({
     app: function () {
       this.template('app/index.html');
       this.template('app/app.js');
+      this.template('app/app.test.js');
       this.template('app/app.scss');
     },
 
@@ -238,23 +242,6 @@ module.exports = generators.Base.extend({
         this.destinationPath(this.generatorsPrefix, 'app/component/component-edit.tpl.html'),
         {
           appname: this.appname
-        }
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('app/component/component-info.tpl.html'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component-info.tpl.html'),
-        {
-          appname: this.appname
-        }
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('app/component/component-main.tpl.html'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component-main.tpl.html'),
-        {
-          appname: this.appname,
-          controllerClassName: this.controllerClassName
         }
       );
 
@@ -316,20 +303,10 @@ module.exports = generators.Base.extend({
         }
       );
     }
-
-    // tests: function () {
-      // this.fs.copyTpl(
-        // this.templatePath('test-app.js'),
-        // this.destinationPath('test/test-app.js'),
-        // {
-          // prefix: this.generatorsPrefix,
-          // generatorName: this.generatorName
-        // }
-      // );
-    // }
   },
 
   install: function () {
+    this.spawnCommand('git', ['init']);
     this.installDependencies({ bower: false });
   }
 });

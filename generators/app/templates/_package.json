@@ -1,36 +1,61 @@
 {
   "name": "<%= appname %>",
-  "version": "1.0.0",
-  "description": "<%= appname %> UI",
+  "version": "0.0.0-semantic-released",
   "main": "index",
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run test:once && npm run check-coverage"
+    }
+  },
   "scripts": {
     "test": "NODE_ENV=test karma start",
+    "test:once": "karma start",
+    "prebuild": "rm -rf dist && mkdir dist",
+    "build": "NODE_ENV=production webpack --config webpack.build.js --display-modules",
+    "commit": "git-cz",
+    "check-coverage": "istanbul check-coverage --statements 90 --branches 90 --functions 90 --lines 90",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
     "start": "NODE_ENV=development node server/dev-server.js",
-    "build": "rm -rf dist && NODE_ENV=production webpack --config webpack.build.js --display-modules"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
+    "angular-mocks": "~1.4.7",
     "autoprefixer-loader": "~3.1.0",
-    "babel-core": "~5.8.25",
-    "babel-eslint": "~4.1.2",
+    "babel-core": "~5.8.24",
+    "babel-eslint": "~4.1.3",
     "babel-loader": "~5.3.2",
     "babel-runtime": "~5.8.25",
-    "chai": "~3.3.0",
+    "commitizen": "~1.0.5",
     "css-loader": "~0.19.0",
-    "eslint": "~1.5.1",
-    "eslint-loader": "~1.0.0",
+    "cz-conventional-changelog": "1.1.2",
+    "eslint": "~1.6.0",
+    "eslint-loader": "~1.1.0",
     "extract-text-webpack-plugin": "~0.8.2",
     "file-loader": "~0.8.4",
+    "ghooks": "~0.3.2",
     "html-webpack-plugin": "~1.6.1",
-    "mocha": "~2.3.3",
-    "mocha-babel": "~3.0.0",
+    "isparta-loader": "~1.0.0",
+    "istanbul": "~0.3.22",
+    "karma": "~0.13.10",
+    "karma-chai-plugins": "~0.6.0",
+    "karma-coverage": "~0.5.2",
+    "karma-es6-shim": "~0.1.3",
+    "karma-mocha": "~0.2.0",
+    "karma-mocha-reporter": "~1.1.1",
+    "karma-phantomjs-launcher": "~0.2.1",
+    "karma-sourcemap-loader": "~0.3.5",
+    "karma-webpack": "~1.7.0",
     "ng-annotate-loader": "0.0.10",
     "ng-cache-loader": "0.0.13",
     "node-bourbon": "~4.2.3",
-    "node-sass": "~3.3.2",
+    "node-sass": "~3.3.3",
     "phantomjs": "~1.9.18",
     "raw-loader": "~0.5.1",
-    "sass-loader": "~2.0.1",
-    "sinon-chai": "~2.8.0",
+    "sass-loader": "~3.0.0",
+    "semantic-release": "~4.3.5",
     "style-loader": "~0.12.3",
     "url-loader": "~0.5.6",
     "webpack": "~1.12.1",
@@ -55,9 +80,14 @@
   "license": "MIT",
   "homepage": "https://github.com/<%= realname %>/<%= appname %>",
   "dependencies": {
-    "angular": "~1.4.6",
+    "angular": "~1.4.7",
     "jquery": "~2.1.4",
-    "angular-material": "~0.11.0",
-    "angular-sanji-window": "Sanji-IO/angular-sanji-window#webpack-sanji-window"
+    "angular-material": "~0.11.4",
+    "angular-material-icons": "~0.6.0",
+    "angular-sanji-window": "Sanji-IO/angular-sanji-window#webpack-sanji-window",
+    "sanji-core-ui": "~1.1.0",
+    "socket.io-client": "~1.3.7",
+    "svg-morpheus": "alexk111/SVG-Morpheus#v0.1.8",
+    "toastr": "~2.1.2"
   }
 }

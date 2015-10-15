@@ -1,4 +1,23 @@
 sudo: false
 language: node_js
+cache:
+  directories:
+    - node_modules
+notifications:
+  email: false
 node_js:
   - '0.12'
+branches:
+  only:
+    - master
+before_install:
+  - npm i -g npm@^2.0.0
+before_script:
+  - npm prune
+script:
+  - npm run test:once
+  - npm run check-coverage
+  - npm run build
+after_success:
+  - npm run report-coverage
+  - npm run semantic-release

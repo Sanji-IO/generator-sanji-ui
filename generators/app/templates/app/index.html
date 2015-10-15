@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
-  <title><%= appname %> config ui</title>
+  <title><%= appname %> config</title>
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic">
 </head>
 
@@ -21,14 +21,24 @@
   <div class="container">
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h3><%= appname %> config ui</h3>
+        <h3><%= appname %> config</h3>
       </div>
     </md-toolbar>
 
     <div layout="row" layout-padding layout-align="center center">
       <div flex="33">
-        <sanji-window title="<%= appname %>">
-          <<%= appname %>-container sanji-window-mgr="sanjiWindowMgr"></<%= appname %>-container>
+        <sanji-window window-id="<%= appname %>" window-name="<%= appname %>">
+
+          <sanji-window-state state-name="sanji-loading" default-state>
+            <div layout="row" layout-sm="column" layout-align="space-around">
+              <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+          </sanji-window-state>
+
+          <sanji-window-state state-name="sanji-edit" link-name="Settings" icon="settings">
+            <<%= appname %>-container></<%= appname %>-container>
+          </sanji-window-state>
+
         </sanji-window>
       </div>
     </div>

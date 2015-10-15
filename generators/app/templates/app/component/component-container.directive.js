@@ -1,5 +1,5 @@
 const injectMap = new WeakMap();
-const $inject = ['$log'];
+const $inject = [];
 class <%= containerDirectiveClassName %> {
   constructor(injects) {
     <%= containerDirectiveClassName %>.directiveFactory.$inject.forEach((item, index) => {
@@ -9,11 +9,9 @@ class <%= containerDirectiveClassName %> {
     this.restrict = 'EA';
     this.controller = '<%= containerControllerClassName %>';
     this.controllerAs = 'vm';
-    this.scope = true;
-    this.bindToController = {
-      sanjiWindowMgr: '='
-    };
-    this.template = `<<%= appname %> data="vm.data" sanji-window-mgr="vm.sanjiWindowMgr"></<%= appname %>>`;
+    this.scope = {};
+    this.bindToController = true;
+    this.template = `<<%= appname %> data="vm.data"></<%= appname %>>`;
   }
 
   static directiveFactory(...injects) {

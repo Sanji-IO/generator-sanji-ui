@@ -1,7 +1,5 @@
-import sanjiWindow from 'angular-sanji-window';
+import sjCore from 'sanji-core-ui';
 
-import './component-main.tpl.html';
-import './component-info.tpl.html';
 import './component-edit.tpl.html';
 import './component.scss';
 import <%= serviceClassName %> from './component.service';
@@ -10,7 +8,7 @@ import <%= controllerClassName %> from './component.controller';
 import <%= containerDirectiveClassName %> from './component-container.directive';
 import <%= directiveClassName %> from './component.directive';
 
-let app = angular.module('<%= ngModuleName %>', [sanjiWindow]);
+let app = angular.module('<%= ngModuleName %>', [sjCore]);
 app.service('<%= serviceName %>', <%= serviceClassName %>);
 app.controller('<%= containerControllerClassName %>', <%= containerControllerClassName %>);
 app.controller('<%= controllerClassName %>', <%= controllerClassName %>);
