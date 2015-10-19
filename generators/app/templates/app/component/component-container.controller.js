@@ -15,6 +15,10 @@ class <%= containerControllerClassName %> {
       sanjiWindowMgr.navigateTo(EDIT_STATE);
     });
   }
+
+  onSave(data) {
+    this.<%= serviceName %>.update(data);
+  }
 }
 <%= containerControllerClassName %>.$inject = $inject;
 export default <%= containerControllerClassName %>;

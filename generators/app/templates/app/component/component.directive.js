@@ -10,9 +10,10 @@ class <%= directiveClassName %> {
     this.restrict = 'EA';
     this.controller = '<%= controllerClassName %>';
     this.controllerAs = 'vm';
-    this.bindToController = true;
-    this.scope = {
-      data: '='
+    this.scope = {};
+    this.bindToController = {
+      data: '=',
+      submitCallback: '&onSubmit'
     };
   }
 

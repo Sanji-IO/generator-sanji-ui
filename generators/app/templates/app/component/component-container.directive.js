@@ -11,7 +11,7 @@ class <%= containerDirectiveClassName %> {
     this.controllerAs = 'vm';
     this.scope = {};
     this.bindToController = true;
-    this.template = `<<%= appname %> data="vm.data"></<%= appname %>>`;
+    this.template = `<<%= appname %> data="vm.data" on-submit="vm.onSave(data)"></<%= appname %>>`;
   }
 
   static directiveFactory(...injects) {
