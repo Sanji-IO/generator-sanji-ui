@@ -1,4 +1,5 @@
-const $inject = ['$q', 'rest', 'exception'];
+const $inject = ['$q', 'rest', 'exception', '_', 'pathToRegexp'];
+const config = require('./component.resource.json');
 class <%= serviceClassName %> {
   constructor(...injects) {
     <%= serviceClassName %>.$inject.forEach((item, index) => this[item] = injects[index]);
@@ -6,17 +7,39 @@ class <%= serviceClassName %> {
   }
 
   _transform(data) {
-    return {
-      content: data,
-      formOptions: {},
-      fields: require('./component.form.json')
-    };
+    switch(config.get.type) {
+      case 'collection':
+        return this._.map(data, (item, index) => {
+          return {
+            title: config.get.titlePrefix + index,
+            content: item,
+            formOptions: {},
+            fields: config.fields
+          };
+        });
+      case 'model':
+        return {
+          content: data,
+          formOptions: {},
+          fields: config.fields
+        };
+      default:
+        return this._.map(data, (item, index) => {
+          return {
+            title: config.get.titlePrefix + index,
+            content: item,
+            formOptions: {},
+            fields: config.fields
+          };
+        });
+    }
   }
 
   get() {
-    return this.$http.get('/network/ethernets')
+    let toPath = this.pathToRegexp.compile(config.get.url);
+    return this.rest.get(toPath())
     .then(res => {
-      this.model = this._transform(res.data[0]);
+      this.collection = this._transform(res.data);
     })
     .catch(err => {
       this.exception.catcher('[<%= serviceClassName %>] Get data error.')(err);
@@ -25,7 +48,9 @@ class <%= serviceClassName %> {
   }
 
   update(data) {
-    return this.rest.put('/network/ethernets/' + data.id, data)
+    let toPath = this.pathToRegexp.compile(config.put.url);
+    let path = (undefined !== data.content.id) ? toPath({id: data.content.id}) : toPath();
+    return this.rest.put(path, data.content, data.formOptions.files)
     .catch(err => {
       this.exception.catcher('[EthernetService] Update data error.')(err);
       return this.$q.reject();

@@ -1,8 +1,0 @@
-[{
-  "key": "ip",
-  "type": "input",
-  "templateOptions": {
-    "label": "IP",
-    "required": true
-  }
-}]

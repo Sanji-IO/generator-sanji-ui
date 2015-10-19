@@ -1,0 +1,19 @@
+{
+  "get": {
+    "url": "/network/ethernets",
+    "type": "collection"
+  },
+  "put": {
+    "url": "/network/ethernets/:id",
+    "type": "model"
+  },
+  "fields": [{
+    "key": "ip",
+    "type": "input",
+    "templateOptions": {
+      "label": "IP",
+      "required": true
+    }
+  }]
+}
+

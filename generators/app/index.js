@@ -220,6 +220,7 @@ module.exports = generators.Base.extend({
 
     component: function() {
       this.template('app/component/component.scss');
+      this.template('app/component/component.resource.json');
 
       this.fs.copyTpl(
         this.templatePath('app/component/index.js'),
