@@ -3,7 +3,7 @@
     <form ng-submit="vm.save(tab)" role="form" layout="column" layout-padding novalidate>
       <formly-form model="vm.data.content" fields="vm.data.fields" options="vm.data.formOptions" form="vm.form">
         <md-button type="submit" class="md-raised md-primary" ng-disabled="vm.form.$invalid">
-          Save
+          <sapn translate="<%= constantModuleName %>_FORM_SAVE"></span>
         </md-button>
       </formly-form>
     </form>

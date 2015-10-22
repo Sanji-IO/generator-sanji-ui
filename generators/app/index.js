@@ -246,7 +246,8 @@ module.exports = generators.Base.extend({
         this.templatePath('app/component/component-edit.tpl.html'),
         this.destinationPath(this.generatorsPrefix, 'app/component/component-edit.tpl.html'),
         {
-          appname: this.appname
+          appname: this.appname,
+          constantModuleName: this.constantModuleName
         }
       );
 

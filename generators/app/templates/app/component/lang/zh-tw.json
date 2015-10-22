@@ -1,3 +1,4 @@
 {
-  "<%= constantModuleName %>_FORM_LABEL_IP": "IP"
+  "<%= constantModuleName %>_FORM_LABEL_IP": "IP",
+  "<%= constantModuleName %>_FORM_SAVE": "儲存"
 }
