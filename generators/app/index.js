@@ -155,6 +155,7 @@ module.exports = generators.Base.extend({
 
       this.prompt(prompts, function (props) {
         this.ngModuleName = 'sanji.' + props.moduleName;
+        this.constantModuleName = props.moduleName.toUpperCase();
         this.libraryName = 'sj' + _.capitalize(props.moduleName.toLowerCase());
         this.serviceClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Service';
         this.serviceName = props.moduleName.toLowerCase() + 'Service';
@@ -221,6 +222,9 @@ module.exports = generators.Base.extend({
     component: function() {
       this.template('app/component/component.scss');
       this.template('app/component/component.resource.json');
+      this.template('app/component/component.i18n.js');
+      this.template('app/component/lang/en.json');
+      this.template('app/component/lang/zh-tw.json');
 
       this.fs.copyTpl(
         this.templatePath('app/component/index.js'),

@@ -11,7 +11,7 @@
     "key": "ip",
     "type": "input",
     "templateOptions": {
-      "label": "IP",
+      "label": "<%= constantModuleName %>_FORM_LABEL_IP",
       "required": true
     }
   }]
