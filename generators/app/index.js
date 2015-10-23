@@ -155,6 +155,7 @@ module.exports = generators.Base.extend({
 
       this.prompt(prompts, function (props) {
         this.ngModuleName = 'sanji.' + props.moduleName;
+        this.windowName = _.capitalize(props.moduleName.toLowerCase());
         this.constantModuleName = props.moduleName.toUpperCase();
         this.libraryName = 'sj' + _.capitalize(props.moduleName.toLowerCase());
         this.serviceClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Service';
@@ -165,6 +166,23 @@ module.exports = generators.Base.extend({
         this.containerDirectiveName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Container';
         this.directiveClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Directive';
         this.directiveName = 'sanji' + _.capitalize(props.moduleName.toLowerCase());
+        this.directiveTplName = 'sanji-' + props.moduleName.toLowerCase();
+        done();
+      }.bind(this));
+    },
+
+    askForResource: function () {
+      var done = this.async();
+
+      var prompts = [{
+        type: 'confirm',
+        name: 'isCollection',
+        message: 'API resource is collection?',
+        default: true
+      }];
+
+      this.prompt(prompts, function (props) {
+        this.isCollection = props.isCollection;
         done();
       }.bind(this));
     }
@@ -247,7 +265,9 @@ module.exports = generators.Base.extend({
         this.destinationPath(this.generatorsPrefix, 'app/component/component-edit.tpl.html'),
         {
           appname: this.appname,
-          constantModuleName: this.constantModuleName
+          constantModuleName: this.constantModuleName,
+          directiveTplName: this.directiveTplName,
+          isCollection: this.isCollection
         }
       );
 
@@ -256,7 +276,8 @@ module.exports = generators.Base.extend({
         this.destinationPath(this.generatorsPrefix, 'app/component/component-container.controller.js'),
         {
           containerControllerClassName: this.containerControllerClassName,
-          serviceName: this.serviceName
+          serviceName: this.serviceName,
+          appname: this.appname
         }
       );
 
@@ -274,7 +295,7 @@ module.exports = generators.Base.extend({
         {
           containerControllerClassName: this.containerControllerClassName,
           containerDirectiveClassName: this.containerDirectiveClassName,
-          appname: this.appname
+          directiveTplName: this.directiveTplName
         }
       );
 
@@ -282,10 +303,11 @@ module.exports = generators.Base.extend({
         this.templatePath('app/component/component.directive.js'),
         this.destinationPath(this.generatorsPrefix, 'app/component/component.directive.js'),
         {
-          appname: this.appname,
+          directiveTplName: this.directiveTplName,
           controllerClassName: this.controllerClassName,
           directiveClassName: this.directiveClassName,
-          directiveName: this.directiveName
+          directiveName: this.directiveName,
+          isCollection: this.isCollection
         }
       );
 

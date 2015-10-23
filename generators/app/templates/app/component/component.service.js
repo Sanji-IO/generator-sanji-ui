@@ -3,7 +3,16 @@ const config = require('./component.resource.json');
 class <%= serviceClassName %> {
   constructor(...injects) {
     <%= serviceClassName %>.$inject.forEach((item, index) => this[item] = injects[index]);
-    this.model = {};
+    switch(config.get.type) {
+      case 'collection':
+        this.data = [];
+        break;
+      case 'model':
+        this.data = {};
+        break;
+      default:
+        this.data = [];
+    }
   }
 
   _transform(data) {
@@ -11,7 +20,7 @@ class <%= serviceClassName %> {
       case 'collection':
         return this._.map(data, (item, index) => {
           return {
-            title: config.get.titlePrefix + index,
+            title: (config.get.titlePrefix || 'tab') + index,
             content: item,
             formOptions: {},
             fields: config.fields
@@ -26,7 +35,7 @@ class <%= serviceClassName %> {
       default:
         return this._.map(data, (item, index) => {
           return {
-            title: config.get.titlePrefix + index,
+            title: (config.get.titlePrefix || 'tab') + index,
             content: item,
             formOptions: {},
             fields: config.fields
@@ -39,7 +48,7 @@ class <%= serviceClassName %> {
     let toPath = this.pathToRegexp.compile(config.get.url);
     return this.rest.get(toPath())
     .then(res => {
-      this.collection = this._transform(res.data);
+      this.data = this._transform(res.data);
     })
     .catch(err => {
       this.exception.catcher('[<%= serviceClassName %>] Get data error.')(err);
@@ -52,7 +61,7 @@ class <%= serviceClassName %> {
     let path = (undefined !== data.content.id) ? toPath({id: data.content.id}) : toPath();
     return this.rest.put(path, data.content, data.formOptions.files)
     .catch(err => {
-      this.exception.catcher('[EthernetService] Update data error.')(err);
+      this.exception.catcher('[<%= serviceClassName %>] Update data error.')(err);
       return this.$q.reject();
     });
   }

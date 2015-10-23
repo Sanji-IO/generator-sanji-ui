@@ -34,7 +34,7 @@
 
     <div layout="row" layout-padding layout-align="center center">
       <div flex="33">
-        <sanji-window window-id="<%= appname %>" window-name="<%= appname %>">
+        <sanji-window window-id="<%= appname %>" window-name="<%= windowName %>">
 
           <sanji-window-state state-name="sanji-loading" default-state>
             <div layout="row" layout-sm="column" layout-align="space-around">
@@ -43,7 +43,7 @@
           </sanji-window-state>
 
           <sanji-window-state state-name="sanji-edit" link-name="Settings" icon="settings">
-            <<%= appname %>-container></<%= appname %>-container>
+            <<%= directiveTplName %>-container></<%= directiveTplName %>-container>
           </sanji-window-state>
 
         </sanji-window>

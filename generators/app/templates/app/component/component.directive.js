@@ -6,13 +6,17 @@ class <%= directiveClassName %> {
       <%= directiveClassName %>[item] = injects[index];
       injectMap.set(<%= directiveClassName %>[item], injects[index]);
     });
-    this.templateUrl = '<%= appname %>-main.tpl.html'
+    this.templateUrl = '<%= directiveTplName %>-edit.tpl.html'
     this.restrict = 'EA';
     this.controller = '<%= controllerClassName %>';
     this.controllerAs = 'vm';
     this.scope = {};
     this.bindToController = {
+      <% if (isCollection) { %>
+      tabs: '=data',
+      <% } else { %>
       data: '=',
+      <% } %>
       submitCallback: '&onSubmit'
     };
   }
