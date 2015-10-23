@@ -65,10 +65,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<%= realname %>/<%= appname %>.git"
+    "url": "https://github.com/<%= githubUser %>/<%= appname %>.git"
   },
   "bugs": {
-    "url": "https://github.com/<%= realname %>/<%= appname %>/issues"
+    "url": "https://github.com/<%= githubUser %>/<%= appname %>/issues"
   },
   "keywords": [
     "sanji"
@@ -79,13 +79,13 @@
     "url": "<%= githubUrl %>"
   },
   "license": "MIT",
-  "homepage": "https://github.com/<%= realname %>/<%= appname %>",
+  "homepage": "https://github.com/<%= githubUser %>/<%= appname %>",
   "dependencies": {
     "angular": "~1.4.7",
     "angular-material": "~0.11.4",
     "angular-material-icons": "~0.6.0",
     "jquery": "~2.1.4",
-    "sanji-core-ui": "~1.3.10",
+    "sanji-core-ui": "~1.4.0",
     "socket.io-client": "~1.3.7",
     "svg-morpheus": "alexk111/SVG-Morpheus#v0.1.8",
     "toastr": "~2.1.2"
