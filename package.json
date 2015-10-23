@@ -17,7 +17,8 @@
     "generators"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "sanji"
   ],
   "dependencies": {
     "yeoman-generator": "~0.20.3",
