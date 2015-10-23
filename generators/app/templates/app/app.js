@@ -6,7 +6,7 @@ import component from './component';
 
 let app = angular.module('webapp', [component]);
 app.config(restProvider => {
-  restProvider.configure({basePath: 'http://private-d8e84-sanjigeneric.apiary-mock.com'});
+  restProvider.configure({basePath: '<%= apiBasePath %>'});
 });
 
 class AppController {

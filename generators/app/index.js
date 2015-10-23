@@ -111,7 +111,7 @@ module.exports = generators.Base.extend({
 
       var prompts = [{
         name: 'generatorName',
-        message: 'What\'s the base name of your project?',
+        message: 'What\'s the base name of your project? Prefix "sanji-" is already exist.',
         default: generatorName
       }, {
         type: 'confirm',
@@ -183,6 +183,21 @@ module.exports = generators.Base.extend({
 
       this.prompt(prompts, function (props) {
         this.isCollection = props.isCollection;
+        done();
+      }.bind(this));
+    },
+
+    askForBasePath: function () {
+      var done = this.async();
+
+      var prompts = [{
+        name: 'basePath',
+        message: 'What\'s your api base path?',
+        default: '/api/v1'
+      }];
+
+      this.prompt(prompts, function (props) {
+        this.apiBasePath = props.basePath;
         done();
       }.bind(this));
     }
