@@ -20,7 +20,7 @@
   </md-content>
   <% } else { %>
   <md-content>
-    <form ng-submit="vm.save(tab)" role="form" layout="column" layout-padding novalidate>
+    <form ng-submit="vm.save(vm.data)" role="form" layout="column" layout-padding novalidate>
       <formly-form model="vm.data.content" fields="vm.data.fields" options="vm.data.formOptions" form="vm.form">
         <md-button type="submit" class="md-raised md-primary" ng-disabled="vm.form.$invalid">
           <sapn translate="<%= constantModuleName %>_FORM_SAVE"></span>
