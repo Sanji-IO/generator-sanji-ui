@@ -39,7 +39,7 @@
     "html-webpack-plugin": "~1.6.1",
     "json-loader": "~0.5.3",
     "isparta-loader": "~1.0.0",
-    "istanbul": "~0.3.22",
+    "istanbul": "~0.4.0",
     "karma": "~0.13.10",
     "karma-chai-plugins": "~0.6.0",
     "karma-coverage": "~0.5.2",
