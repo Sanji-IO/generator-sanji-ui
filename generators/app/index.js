@@ -253,7 +253,7 @@ module.exports = generators.Base.extend({
     },
 
     component: function() {
-      this.template('app/component/component.scss');
+      this.template('app/component/component.style.scss');
       this.template('app/component/component.resource.json');
       this.template('app/component/component.i18n.js');
       this.template('app/component/lang/en.json');
@@ -276,8 +276,8 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/component-edit.tpl.html'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component-edit.tpl.html'),
+        this.templatePath('app/component/component.tpl.html'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component.tpl.html'),
         {
           appname: this.appname,
           constantModuleName: this.constantModuleName,

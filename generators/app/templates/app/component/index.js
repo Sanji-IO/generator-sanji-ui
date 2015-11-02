@@ -1,7 +1,7 @@
 import sjCore from 'sanji-core-ui';
 
-import './component-edit.tpl.html';
-import './component.scss';
+import './component.tpl.html';
+import './component.style.scss';
 import i18nConfig from './component.i18n';
 import <%= serviceClassName %> from './component.service';
 import <%= containerControllerClassName %> from './component-container.controller';
