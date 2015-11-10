@@ -37,6 +37,7 @@ var config = {
           /(sanji-core-ui)/
         ]
       },
+      { test: require.resolve("jquery"), loader: "expose?$!expose?jQuery" },
       { test: /\.json$/, loader: 'json', exclude: /node_modules\/(?!sanji-core-ui)/ },
       {
         test: /\.html$/,
