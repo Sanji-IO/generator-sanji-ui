@@ -1,23 +1,31 @@
 const $inject = ['sanjiWindowService', '<%= serviceName %>'];
+const WINDOW_ID = '<%= appname %>';
 class <%= containerControllerClassName %> {
   constructor(...injects) {
     <%= containerControllerClassName %>.$inject.forEach((item, index) => this[item] = injects[index]);
 
-    const WINDOW_ID = '<%= appname %>';
-    const EDIT_STATE = 'sanji-edit';
-    let <%= serviceName %> = this.<%= serviceName %>;
     let sanjiWindowMgr = this.sanjiWindowService.get(WINDOW_ID);
-
     this.data = <%= serviceName %>.data;
 
-    this.<%= serviceName %>.get().then(() => {
-      this.data = <%= serviceName %>.data;
-      sanjiWindowMgr.navigateTo(EDIT_STATE);
+    this.activate();
+
+    this.$scope.$on('sj:window:refresh', this.onRefresh.bind(this))
+  }
+
+  activate() {
+    this.sanjiWindowMgr.promise = this.<%= serviceName %>.get().then(() => {
+      this.data = this.<%= serviceName %>.data;
     });
   }
 
+  onRefresh(event, args) {
+    if (args.id === WINDOW_ID) {
+      this.activate();
+    }
+  }
+
   onSave(data) {
-    this.<%= serviceName %>.update(data);
+    this.sanjiWindowMgr.promise = this.<%= serviceName %>.update(data);
   }
 }
 <%= containerControllerClassName %>.$inject = $inject;
