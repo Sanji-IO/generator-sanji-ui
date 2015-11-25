@@ -164,6 +164,8 @@ module.exports = generators.Base.extend({
         this.controllerClassName = _.capitalize(props.moduleName.toLowerCase())+ 'Controller';
         this.containerDirectiveClassName = _.capitalize(props.moduleName.toLowerCase()) + 'ContainerDirective';
         this.containerDirectiveName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Container';
+        this.windowDirectiveClassName = _.capitalize(props.moduleName.toLowerCase()) + 'WindowDirective';
+        this.windowDirectiveName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Window';
         this.directiveClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Directive';
         this.directiveName = 'sanji' + _.capitalize(props.moduleName.toLowerCase());
         this.directiveTplName = 'sanji-' + props.moduleName.toLowerCase();
@@ -268,6 +270,8 @@ module.exports = generators.Base.extend({
           controllerClassName: this.controllerClassName,
           containerDirectiveClassName: this.containerDirectiveClassName,
           containerDirectiveName: this.containerDirectiveName,
+          windowDirectiveClassName: this.windowDirectiveClassName,
+          windowDirectiveName: this.windowDirectiveName,
           directiveClassName: this.directiveClassName,
           directiveName: this.directiveName,
           serviceClassName: this.serviceClassName,
@@ -301,6 +305,17 @@ module.exports = generators.Base.extend({
         this.destinationPath(this.generatorsPrefix, 'app/component/component.controller.js'),
         {
           controllerClassName: this.controllerClassName
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('app/component/component-window.directive.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component-window.directive.js'),
+        {
+          windowDirectiveClassName: this.containerDirectiveClassName,
+          directiveTplName: this.directiveTplName,
+          constantModuleName: this.directiveTplName,
+          appname: this.appname
         }
       );
 

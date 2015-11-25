@@ -25,8 +25,8 @@
       </div>
       <md-input-container>
         <md-select ng-model="app.currentLang" ng-change="app.changeLang(app.currentLang)">
-          <md-option ng-repeat="lang in app.langs" value="{{lang}}">
-            {{lang}}
+          <md-option ng-repeat="lang in app.langs" value="{{lang.key}}">
+            {{lang.label}}
           </md-option>
         </md-select>
       </md-input-container>
@@ -34,19 +34,7 @@
 
     <div layout="row" layout-padding layout-align="center center">
       <div flex="33">
-        <sanji-window window-id="<%= appname %>" window-name="<%= windowName %>">
-
-          <sanji-window-state state-name="sanji-loading" default-state>
-            <div layout="row" layout-sm="column" layout-align="space-around">
-              <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-            </div>
-          </sanji-window-state>
-
-          <sanji-window-state state-name="sanji-edit" link-name="Settings" icon="settings">
-            <<%= directiveTplName %>-container></<%= directiveTplName %>-container>
-          </sanji-window-state>
-
-        </sanji-window>
+        <<%= directiveTplName %>-window></<%= directiveTplName %>-window>
       </div>
     </div>
 

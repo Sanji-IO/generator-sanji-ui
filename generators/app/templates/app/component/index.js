@@ -8,6 +8,7 @@ import <%= containerControllerClassName %> from './component-container.controlle
 import <%= controllerClassName %> from './component.controller';
 import <%= containerDirectiveClassName %> from './component-container.directive';
 import <%= directiveClassName %> from './component.directive';
+import <%= windowDirectiveClassName %> from './component-window.directive';
 
 let app = angular.module('<%= ngModuleName %>', [sjCore]);
 app.config(i18nConfig);
@@ -16,4 +17,5 @@ app.controller('<%= containerControllerClassName %>', <%= containerControllerCla
 app.controller('<%= controllerClassName %>', <%= controllerClassName %>);
 app.directive('<%= containerDirectiveName %>', <%= containerDirectiveClassName %>.directiveFactory);
 app.directive('<%= directiveName %>', <%= directiveClassName%>.directiveFactory);
+app.directive('<%= windowDirectiveName %>', <%= windowDirectiveClassName %>.directiveFactory);
 export default app = app.name

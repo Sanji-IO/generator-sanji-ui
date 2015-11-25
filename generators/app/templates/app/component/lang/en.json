@@ -1,4 +1,6 @@
 {
+  "<%= constantModuleName %>": "<%= windowName %>",
+  "<%= constantModuleName %>_FORM_SETTING": "Setting",
   "<%= constantModuleName %>_FORM_LABEL_IP": "IP",
   "<%= constantModuleName %>_FORM_SAVE": "Save"
 }
