@@ -5,10 +5,6 @@ import 'angular';
 import component from './component';
 
 let app = angular.module('webapp', [component]);
-app.config(restProvider => {
-  restProvider.configure({basePath: '<%= apiBasePath %>'});
-});
-
 class AppController {
   constructor($translate, LANG_KEYS) {
     this.$translate = $translate;

@@ -346,7 +346,8 @@ module.exports = generators.Base.extend({
         this.destinationPath(this.generatorsPrefix, 'app/component/component.service.js'),
         {
           serviceClassName: this.serviceClassName,
-          serviceName: this.serviceName
+          serviceName: this.serviceName,
+          apiBasePath: this.apiBasePath
         }
       );
     },

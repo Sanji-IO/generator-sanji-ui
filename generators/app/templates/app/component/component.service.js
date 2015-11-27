@@ -46,7 +46,7 @@ class <%= serviceClassName %> {
 
   get() {
     let toPath = this.pathToRegexp.compile(config.get.url);
-    return this.rest.get(toPath())
+    return this.rest.get(toPath(), (__DEV__) ? '<%= apiBasePath %>' : undefined)
     .then(res => {
       this.data = this._transform(res.data);
     })
@@ -59,7 +59,7 @@ class <%= serviceClassName %> {
   update(data) {
     let toPath = this.pathToRegexp.compile(config.put.url);
     let path = (undefined !== data.content.id) ? toPath({id: data.content.id}) : toPath();
-    return this.rest.put(path, data.content, data.formOptions.files)
+    return this.rest.put(path, data.content, data.formOptions.files, (__DEV__) ? '<%= apiBasePath %>' : undefined)
     .catch(err => {
       this.exception.catcher('[<%= serviceClassName %>] Update data error.')(err);
       return this.$q.reject();
