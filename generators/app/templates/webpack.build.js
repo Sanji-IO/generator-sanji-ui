@@ -12,7 +12,6 @@ config.entry = {
 };
 config.output.filename = '<%= appname %>.js';
 config.output.library = '<%= libraryName %>';
-config.output.libraryTarget = 'umd';
 config.externals = {
   'sanji-core-ui': 'sjCore'
 };
