@@ -11,10 +11,8 @@ config.entry = {
   'sanji-ui': './component/index.js'
 };
 config.output.filename = '<%= appname %>.js';
-config.output.library = '<%= libraryName %>';
-config.externals = {
-  'sanji-core-ui': 'sjCore'
-};
+config.output.libraryTarget = 'umd';
+config.externals = ['sanji-core-ui'];
 
 config.module.loaders = [
   {
@@ -26,6 +24,7 @@ config.module.loaders = [
 config.plugins.push(
   new ExtractTextPlugin('<%= appname %>.css'),
   new WebpackNotifierPlugin({title: 'Webpack'}),
-  new webpack.optimize.DedupePlugin()
+  new webpack.optimize.DedupePlugin(),
+  new webpack.optimize.AggressiveMergingPlugin()
 );
 module.exports = config;

@@ -2,7 +2,7 @@
   "name": "<%= appname %>",
   "author": "<%= realname %> <<%= email %>> (<%= githubUrl %>)",
   "version": "0.0.0-semantic-released",
-  "main": "dist/<%= appname %>.js",
+  "main": "index",
   "config": {
     "ghooks": {
       "pre-commit": "npm run test:once && npm run check-coverage"
@@ -85,7 +85,7 @@
     "angular-material": "~0.11.4",
     "angular-material-icons": "~0.6.0",
     "jquery": "~2.1.4",
-    "sanji-core-ui": "~1.9.1",
+    "sanji-core-ui": "~1.9.6",
     "socket.io-client": "~1.3.7",
     "svg-morpheus": "alexk111/SVG-Morpheus#v0.1.8",
     "toastr": "~2.1.2"
