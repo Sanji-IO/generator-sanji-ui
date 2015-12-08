@@ -21,14 +21,15 @@
     "sanji"
   ],
   "dependencies": {
-    "yeoman-generator": "~0.20.3",
-    "github": "~0.2.4",
     "chalk": "~1.1.1",
-    "yosay": "~1.0.5",
+    "github": "~0.2.4",
     "lodash": "~3.10.1",
     "npm-name": "~1.1.1",
     "superb": "~1.2.0",
-    "underscore.string": "~3.2.0"
+    "underscore.string": "~3.2.0",
+    "uuid": "~2.0.1",
+    "yeoman-generator": "~0.20.3",
+    "yosay": "~1.0.5"
   },
   "devDependencies": {
     "mocha": "~2.2.5"

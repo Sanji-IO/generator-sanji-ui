@@ -8,6 +8,7 @@ var npmName = require('npm-name');
 var superb = require('superb');
 var _ = require('lodash');
 var _s = require('underscore.string');
+var uuid = require('uuid');
 
 var proxy = process.env.http_proxy ||
   process.env.HTTP_PROXY ||
@@ -154,6 +155,7 @@ module.exports = generators.Base.extend({
       }];
 
       this.prompt(prompts, function (props) {
+        this.moduleName = props.moduleName.toLowerCase();
         this.ngModuleName = 'sanji.' + props.moduleName;
         this.windowName = _.capitalize(props.moduleName.toLowerCase());
         this.constantModuleName = props.moduleName.toUpperCase();
@@ -202,6 +204,20 @@ module.exports = generators.Base.extend({
         this.apiBasePath = props.basePath;
         done();
       }.bind(this));
+    },
+
+    askForDescription: function () {
+      var done = this.async();
+
+      var prompts = [{
+        name: 'description',
+        message: 'Description for this compoent'
+      }];
+
+      this.prompt(prompts, function (props) {
+        this.description = props.description;
+        done();
+      }.bind(this));
     }
   },
 
@@ -223,6 +239,10 @@ module.exports = generators.Base.extend({
         this.githubUrl = res.html_url;
         done();
       }.bind(this), this.log);
+    },
+
+    uuid: function() {
+      this.uuid = uuid.v4();
     }
 
   },
@@ -255,8 +275,9 @@ module.exports = generators.Base.extend({
     },
 
     component: function() {
-      this.template('app/component/component.style.scss');
+      this.template('app/component/package.json');
       this.template('app/component/component.resource.json');
+      this.template('app/component/component.route.js');
       this.template('app/component/component.i18n.js');
       this.template('app/component/lang/en.json');
       this.template('app/component/lang/zh-tw.json');

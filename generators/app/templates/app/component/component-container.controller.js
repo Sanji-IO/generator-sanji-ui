@@ -1,11 +1,11 @@
-const $inject = ['sanjiWindowService', '<%= serviceName %>'];
+const $inject = ['$scope', 'sanjiWindowService', '<%= serviceName %>'];
 const WINDOW_ID = '<%= appname %>';
 class <%= containerControllerClassName %> {
   constructor(...injects) {
     <%= containerControllerClassName %>.$inject.forEach((item, index) => this[item] = injects[index]);
 
-    let sanjiWindowMgr = this.sanjiWindowService.get(WINDOW_ID);
-    this.data = <%= serviceName %>.data;
+    this.sanjiWindowMgr = this.sanjiWindowService.get(WINDOW_ID);
+    this.data = this.<%= serviceName %>.data;
 
     this.activate();
 
