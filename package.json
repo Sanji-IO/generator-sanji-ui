@@ -4,7 +4,7 @@
   "description": "Sanji UI generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "zack9433/generator-sanji-ui",
+  "repository": "Sanji-IO/generator-sanji-ui",
   "author": {
     "name": "Zack Yang",
     "email": "zack9433@gmail.com",
