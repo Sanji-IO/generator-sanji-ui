@@ -8,7 +8,7 @@ var appRoot = path.join(__dirname, 'app');
 var config = {
   context: appRoot,
   output: {
-    path: path.resolve(__dirname, '<%= appname %>'),
+    path: path.resolve(__dirname, '<%= uuid %>'),
     filename: '<%= appname %>.js'
   },
   resolve: {

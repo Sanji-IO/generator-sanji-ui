@@ -14,9 +14,9 @@
   "scripts": {
     "test": "NODE_ENV=test karma start",
     "test:once": "karma start",
-    "prebuild": "rm -rf <%= appname %> && mkdir <%= appname %>",
+    "prebuild": "rm -rf <%= uuid %> && mkdir <%= uuid %>",
     "build": "NODE_ENV=production webpack --config webpack.build.js --display-modules",
-    "postbuild": "cp ./app/component/package.json ./<%= appname %>/",
+    "postbuild": "cp ./app/component/package.json ./<%= uuid %>/ && tar zcvf <%= uuid %>.tar.gz ./<%= uuid %>",
     "commit": "git-cz",
     "check-coverage": "istanbul check-coverage --statements 90 --branches 90 --functions 90 --lines 90",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
