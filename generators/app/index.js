@@ -404,6 +404,6 @@ module.exports = generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies({ bower: false });
+    this.installDependencies({ skipInstall: this.options['skip-install'] || false, bower: false });
   }
 });
