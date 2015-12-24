@@ -259,7 +259,7 @@ module.exports = generators.Base.extend({
     },
 
     uuid: function() {
-      this.uuid = uuid.v4();
+      this.uuid = this.options.uuid || uuid.v4();
     }
 
   },
@@ -403,7 +403,6 @@ module.exports = generators.Base.extend({
   },
 
   install: function () {
-    this.spawnCommand('git', ['init']);
     this.installDependencies({ bower: false });
   }
 });

@@ -1,4 +1,19 @@
 {
+  "version": "<%= version %>",
+  "title": "<%= windowName %>",
+  "uuid": "<%= uuid %>",
+  "author": {
+    "name": "<%= realname %>",
+    "email": "<%= email %>"
+  },
+  "image": "http://placehold.it/220x150",
+  "description": "<%= constantModuleName %>_DESCRIPTION",
+  "route": {
+    "state": "application.<%= moduleName %>",
+    "url": "/<%= moduleName %>"
+  },
+  "authenticate": ["admin"],
+  "files": ["<%= appname %>.js"],
   "get": {
     "url": "/network/ethernets",
     "type": "collection"
