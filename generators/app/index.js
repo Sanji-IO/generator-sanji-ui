@@ -9,6 +9,7 @@ var superb = require('superb');
 var _ = require('lodash');
 var _s = require('underscore.string');
 var uuid = require('uuid');
+var optionOrPrompt = require('yeoman-option-or-prompt');
 
 var proxy = process.env.http_proxy ||
   process.env.HTTP_PROXY ||
@@ -69,6 +70,7 @@ var githubUserInfo = function (name, cb, log) {
 };
 
 module.exports = generators.Base.extend({
+  _optionOrPrompt: optionOrPrompt,
   constructor: function () {
     generators.Base.apply(this, arguments);
 
@@ -100,7 +102,7 @@ module.exports = generators.Base.extend({
         default: 'someuser'
       }];
 
-      this.prompt(prompts, function (props) {
+      this._optionOrPrompt(prompts, function (props) {
         this.githubUser = props.githubUser;
         done();
       }.bind(this));
@@ -133,7 +135,7 @@ module.exports = generators.Base.extend({
         }
       }];
 
-      this.prompt(prompts, function (props) {
+      this._optionOrPrompt(prompts, function (props) {
         if (props.askNameAgain) {
           return this.prompting.askForGeneratorName.call(this);
         }
@@ -154,7 +156,7 @@ module.exports = generators.Base.extend({
         default: this.generatorName
       }];
 
-      this.prompt(prompts, function (props) {
+      this._optionOrPrompt(prompts, function (props) {
         this.moduleName = props.moduleName.toLowerCase();
         this.ngModuleName = 'sanji.' + props.moduleName;
         this.windowName = _.capitalize(props.moduleName.toLowerCase());
@@ -175,6 +177,21 @@ module.exports = generators.Base.extend({
       }.bind(this));
     },
 
+    askForVersion: function () {
+      var done = this.async();
+
+      var prompts = [{
+        name: 'version',
+        message: 'What is your semver version?,
+        default: '1.0.0'
+      }];
+
+      this._optionOrPrompt(prompts, function (props) {
+        this.version = props.version;
+        done();
+      }.bind(this));
+    },
+
     askForResource: function () {
       var done = this.async();
 
@@ -185,7 +202,7 @@ module.exports = generators.Base.extend({
         default: true
       }];
 
-      this.prompt(prompts, function (props) {
+      this._optionOrPrompt(prompts, function (props) {
         this.isCollection = props.isCollection;
         done();
       }.bind(this));
@@ -200,7 +217,7 @@ module.exports = generators.Base.extend({
         default: '/api/v1'
       }];
 
-      this.prompt(prompts, function (props) {
+      this._optionOrPrompt(prompts, function (props) {
         this.apiBasePath = props.basePath;
         done();
       }.bind(this));
@@ -214,7 +231,7 @@ module.exports = generators.Base.extend({
         message: 'Description for this compoent'
       }];
 
-      this.prompt(prompts, function (props) {
+      this._optionOrPrompt(prompts, function (props) {
         this.description = props.description;
         done();
       }.bind(this));
