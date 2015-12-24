@@ -21,8 +21,6 @@
     "check-coverage": "istanbul check-coverage --statements 90 --branches 90 --functions 90 --lines 90",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "start": "NODE_ENV=development node server/dev-server.js",
-    "prepublish": "npm run build",
-    "postpublish": "publish-latest",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
@@ -59,7 +57,6 @@
     "node-bourbon": "~4.2.3",
     "node-sass": "~3.4.2",
     "phantomjs": "~1.9.19",
-    "publish-latest": "~1.1.2",
     "raw-loader": "~0.5.1",
     "sass-loader": "~3.1.1",
     "semantic-release": "~4.3.5",
