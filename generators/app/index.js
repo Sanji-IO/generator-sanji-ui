@@ -182,7 +182,7 @@ module.exports = generators.Base.extend({
 
       var prompts = [{
         name: 'version',
-        message: 'What is your semver version?,
+        message: 'What is your semver version?',
         default: '1.0.0'
       }];
 
