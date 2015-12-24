@@ -88,6 +88,7 @@ module.exports = generators.Base.extend({
     this.config.set('structure', this.options.flat ? 'flat' : 'nested');
     this.generatorsPrefix = this.options.flat ? '' : 'generators/';
     this.appGeneratorDir = this.options.flat ? 'app' : 'generators';
+    this.options.force = true;
   },
 
   prompting: {
