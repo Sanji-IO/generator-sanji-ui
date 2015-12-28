@@ -88,7 +88,6 @@ module.exports = generators.Base.extend({
     this.config.set('structure', this.options.flat ? 'flat' : 'nested');
     this.generatorsPrefix = this.options.flat ? '' : 'generators/';
     this.appGeneratorDir = this.options.flat ? 'app' : 'generators';
-    this.options.force = true;
   },
 
   prompting: {
@@ -98,13 +97,28 @@ module.exports = generators.Base.extend({
       this.log(yosay('Create your own ' + chalk.red('Sanji UI') + ' with superpowers!'));
 
       var prompts = [{
-        name: 'githubUser',
-        message: 'Would you mind telling me your username on GitHub?',
+        name: 'realname',
+        message: 'Would you mind telling me your username?',
         default: 'someuser'
       }];
 
       this._optionOrPrompt(prompts, function (props) {
-        this.githubUser = props.githubUser;
+        this.realname = props.realname;
+        done();
+      }.bind(this));
+    },
+
+    askForEmail: function () {
+      var done = this.async();
+
+      var prompts = [{
+        name: 'email',
+        message: 'Would you mind telling me your email?',
+        default: 'hello@world.io'
+      }];
+
+      this._optionOrPrompt(prompts, function (props) {
+        this.email = props.email;
         done();
       }.bind(this));
     },
@@ -117,23 +131,6 @@ module.exports = generators.Base.extend({
         name: 'generatorName',
         message: 'What\'s the base name of your project? Prefix "sanji-" is already exist.',
         default: generatorName
-      }, {
-        type: 'confirm',
-        name: 'askNameAgain',
-        message: 'The name above already exists on npm, choose another?',
-        default: true,
-        when: function (answers) {
-          var done = this.async();
-          var name = 'sanji-' + answers.generatorName;
-
-          npmName(name, function (err, available) {
-            if (!available) {
-              done(true);
-            }
-
-            done(false);
-          });
-        }
       }];
 
       this._optionOrPrompt(prompts, function (props) {
@@ -246,17 +243,6 @@ module.exports = generators.Base.extend({
       }
 
       this.config.save();
-    },
-
-    userInfo: function () {
-      var done = this.async();
-
-      githubUserInfo(this.githubUser, function (res) {
-        this.realname = res.name;
-        this.email = res.email;
-        this.githubUrl = res.html_url;
-        done();
-      }.bind(this), this.log);
     },
 
     uuid: function() {

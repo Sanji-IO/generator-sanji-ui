@@ -1,6 +1,6 @@
 {
   "name": "<%= appname %>",
-  "author": "<%= realname %> <<%= email %>> (<%= githubUrl %>)",
+  "author": "<%= realname %> <<%= email %>>",
   "version": "0.0.0-semantic-released",
   "main": "index",
   "config": {
@@ -66,18 +66,10 @@
     "webpack-dev-server": "~1.14.0",
     "webpack-notifier": "~1.2.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/<%= githubUser %>/<%= appname %>.git"
-  },
-  "bugs": {
-    "url": "https://github.com/<%= githubUser %>/<%= appname %>/issues"
-  },
   "keywords": [
     "sanji"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/<%= githubUser %>/<%= appname %>",
   "dependencies": {
     "angular": "~1.4.8",
     "angular-material": "~1.0.0",
