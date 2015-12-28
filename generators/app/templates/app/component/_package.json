@@ -7,7 +7,7 @@
     "email": "<%= email %>"
   },
   "image": "http://placehold.it/220x150",
-  "description": "<%= constantModuleName %>_DESCRIPTION",
+  "description": "<%= description %>",
   "route": {
     "state": "application.<%= moduleName %>",
     "url": "/<%= moduleName %>"

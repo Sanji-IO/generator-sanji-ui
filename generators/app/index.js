@@ -221,6 +221,20 @@ module.exports = generators.Base.extend({
       }.bind(this));
     },
 
+    askForEndpoint: function () {
+      var done = this.async();
+
+      var prompts = [{
+        name: 'endpoint',
+        message: 'What\'s your endpoint?'
+      }];
+
+      this._optionOrPrompt(prompts, function (props) {
+        this.endpoint = props.endpoint;
+        done();
+      }.bind(this));
+    },
+
     askForDescription: function () {
       var done = this.async();
 
