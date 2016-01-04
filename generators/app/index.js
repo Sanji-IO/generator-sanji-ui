@@ -293,7 +293,6 @@ module.exports = generators.Base.extend({
     },
 
     component: function() {
-      this.template('app/component/_package.json', 'app/component/package.json');
       this.template('app/component/component.resource.json');
       this.template('app/component/component.route.js');
       this.template('app/component/component.i18n.js');

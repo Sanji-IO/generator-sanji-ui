@@ -9,7 +9,6 @@ import <%= directiveClassName %> from './component.directive';
 import <%= windowDirectiveClassName %> from './component-window.directive';
 
 let app = angular.module('<%= ngModuleName %>', ['sanji.core']);
-app.constant('pkg', require('./package.json'));
 app.constant('resource', require('./component.resource.json'));
 app.config(i18nConfig);
 app.service('<%= serviceName %>', <%= serviceClassName %>);
