@@ -74,7 +74,7 @@
     "angular-material": "~1.0.2",
     "angular-material-icons": "~0.6.0",
     "jquery": "~2.2.0",
-    "sanji-core-ui": "~1.10.1",
+    "sanji-core-ui": "~1.11.1",
     "socket.io-client": "~1.4.4",
     "svg-morpheus": "alexk111/SVG-Morpheus#v0.1.8",
     "toastr": "~2.1.2"
