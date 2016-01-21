@@ -1,7 +1,6 @@
 'use strict';
 
 var webpack = require('webpack');
-var WebpackNotifierPlugin = require('webpack-notifier');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var bourbon = require('node-bourbon').includePaths;
 var config = require('./webpack.config.js');
@@ -27,7 +26,6 @@ config.module.loaders = [
 
 config.plugins.push(
   new webpack.HotModuleReplacementPlugin(),
-  new WebpackNotifierPlugin({title: 'Webpack'}),
   new HtmlWebpackPlugin({
     template: 'app/index.html',
     inject: 'body',
