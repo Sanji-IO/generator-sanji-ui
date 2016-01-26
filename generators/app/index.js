@@ -352,7 +352,7 @@ module.exports = generators.Base.extend({
         {
           windowDirectiveClassName: this.containerDirectiveClassName,
           directiveTplName: this.directiveTplName,
-          constantModuleName: this.directiveTplName,
+          constantModuleName: this.constantModuleName,
           appname: this.appname
         }
       );

@@ -1,4 +1,6 @@
-export default (routerHelper, resource) => {
+import resource from './component.resource.json';
+
+export default (routerHelper) => {
   routerHelper.configureStates(getStates());
 
   function getStates() {
