@@ -52,7 +52,7 @@
     "karma-phantomjs-launcher": "~0.2.3",
     "karma-sourcemap-loader": "~0.3.7",
     "karma-webpack": "~1.7.0",
-    "ng-annotate-loader": "~0.0.10",
+    "ng-annotate-loader": "~0.1.0",
     "ng-cache-loader": "~0.0.15",
     "node-bourbon": "~4.2.3",
     "node-sass": "~3.4.2",
@@ -74,7 +74,7 @@
     "angular-material": "~1.0.2",
     "angular-material-icons": "~0.6.0",
     "jquery": "~2.2.0",
-    "sanji-core-ui": "~1.11.1",
+    "sanji-core-ui": "~1.11.2",
     "socket.io-client": "~1.4.4",
     "svg-morpheus": "alexk111/SVG-Morpheus#v0.1.8",
     "toastr": "~2.1.2"
