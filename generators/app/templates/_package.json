@@ -24,7 +24,7 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
-    "angular-mocks": "~1.4.8",
+    "angular-mocks": "~1.4.9",
     "autoprefixer-loader": "~3.2.0",
     "babel-core": "~5.8.35",
     "babel-eslint": "~4.1.6",
@@ -38,7 +38,7 @@
     "expose-loader": "~0.7.1",
     "extract-text-webpack-plugin": "~1.0.1",
     "file-loader": "~0.8.5",
-    "ghooks": "~1.0.1",
+    "ghooks": "~1.0.3",
     "html-webpack-plugin": "~1.7.0",
     "json-loader": "~0.5.4",
     "isparta-loader": "~1.0.0",
@@ -62,7 +62,7 @@
     "semantic-release": "~4.3.5",
     "style-loader": "~0.13.0",
     "url-loader": "~0.5.7",
-    "webpack": "~1.12.11",
+    "webpack": "~1.12.12",
     "webpack-dev-server": "~1.14.1"
   },
   "keywords": [
@@ -70,8 +70,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "angular": "~1.4.8",
-    "angular-material": "~1.0.2",
+    "angular": "~1.4.9",
+    "angular-material": "~1.0.3",
     "angular-material-icons": "~0.6.0",
     "jquery": "~2.2.0",
     "sanji-core-ui": "~1.11.1",
