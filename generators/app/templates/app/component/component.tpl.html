@@ -1,13 +1,13 @@
 <script type ="text/ng-template" id="<%= directiveTplName %>.tpl.html">
   <% if (isCollection) { %>
   <md-tabs md-dynamic-height md-border-bottom>
-    <md-tab ng-repeat="tab in vm.tabs track by $index" label="{{::tab.title}}">
+    <md-tab ng-repeat="tab in vm.tabs track by $index" label="{{::tab.title}}" aria-label="{{::tab.title}}">
       <form ng-submit="vm.save(tab)"
         role="form" layout="column" layout-padding novalidate>
           <formly-form
           model="tab.content" options="tab.formOptions" fields="tab.fields" form="tab.form">
             <div layout layout-align="end center">
-              <md-button type="submit" class="md-raised md-primary"
+              <md-button type="submit" class="md-raised md-primary" aria-label="Submit"
               ng-disabled="tab.form.$invalid">
                 <sapn translate="<%= constantModuleName %>_FORM_SAVE"></span>
               </md-button>
@@ -24,7 +24,7 @@
       options="vm.data.formOptions"
       form="vm.form">
       <div layout layout-align="end center">
-        <md-button type="submit" class="md-raised md-primary" ng-disabled="vm.form.$invalid">
+        <md-button type="submit" class="md-raised md-primary" aria-label="Submit" ng-disabled="vm.form.$invalid">
           <sapn translate="<%= constantModuleName %>_FORM_SAVE"></span>
         </md-button>
       </div>
