@@ -1,7 +1,6 @@
 'use strict';
 
 var webpack = require('webpack');
-var WebpackNotifierPlugin = require('webpack-notifier');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var bourbon = require('node-bourbon').includePaths;
 var config = require('./webpack.config.js');
