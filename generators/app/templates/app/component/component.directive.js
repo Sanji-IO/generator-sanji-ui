@@ -6,7 +6,7 @@ class <%= directiveClassName %> {
       <%= directiveClassName %>[item] = injects[index];
       injectMap.set(<%= directiveClassName %>[item], injects[index]);
     });
-    this.templateUrl = '<%= directiveTplName %>.tpl.html'
+    this.template = require('./component.tpl.html');
     this.restrict = 'EA';
     this.controller = '<%= controllerClassName %>';
     this.controllerAs = 'vm';

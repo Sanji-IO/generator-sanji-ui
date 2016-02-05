@@ -71,10 +71,10 @@
   "license": "MIT",
   "dependencies": {
     "angular": "~1.4.9",
-    "angular-material": "~1.0.2",
+    "angular-material": "~1.0.5",
     "angular-material-icons": "~0.6.0",
     "jquery": "~2.2.0",
-    "sanji-core-ui": "~1.11.2",
+    "sanji-core-ui": "~1.11.5",
     "socket.io-client": "~1.4.4",
     "svg-morpheus": "alexk111/SVG-Morpheus#v0.1.8",
     "toastr": "~2.1.2"

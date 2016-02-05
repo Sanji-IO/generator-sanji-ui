@@ -1,4 +1,3 @@
-import './component.tpl.html';
 import route from './component.route';
 import i18nConfig from './component.i18n';
 import <%= serviceClassName %> from './component.service';
