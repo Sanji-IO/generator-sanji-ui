@@ -2,5 +2,6 @@
   "<%= constantModuleName %>": "<%= windowName %>",
   "<%= constantModuleName %>_DESCRIPTION": "<%= description %>",
   "<%= constantModuleName %>_FORM_SETTING": "設定",
-  "<%= constantModuleName %>_FORM_SAVE": "儲存"
+  "<%= constantModuleName %>_FORM_SAVE": "儲存",
+  "<%= constantModuleName %>_FORM_SAVE_SUCCESS": "更新資料成功"
 }

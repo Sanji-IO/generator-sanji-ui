@@ -1,7 +1,9 @@
 import 'angular-material.css';
-import 'toastr.scss';
+import 'angular-material-icons.css';
+import 'angular-sanji-window.css';
+import 'toastr.css';
 import './app.scss';
-import 'angular';
+import angular from 'angular';
 import sjCore from 'sanji-core-ui';
 import component from './component';
 

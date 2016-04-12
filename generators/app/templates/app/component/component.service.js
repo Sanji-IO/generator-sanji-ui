@@ -1,6 +1,6 @@
 import resource from './component.resource.json';
 
-const $inject = ['$q', 'rest', 'exception', '_', 'pathToRegexp'];
+const $inject = ['$q', 'rest', 'exception', '_', 'pathToRegexp', '$filter', 'logger'];
 class <%= serviceClassName %> {
   constructor(...injects) {
     <%= serviceClassName %>.$inject.forEach((item, index) => this[item] = injects[index]);
@@ -49,7 +49,7 @@ class <%= serviceClassName %> {
     let toPath = this.pathToRegexp.compile(resource.get.url);
     return this.rest.get(toPath(), (__DEV__) ? {basePath: '<%= apiBasePath %>'} : undefined)
     .then(res => {
-      this.data = this._transform(res.data);
+      return this.data = this._transform(res.data);
     })
     .catch(err => {
       this.exception.catcher('[<%= serviceClassName %>] Get data error.')(err);
@@ -61,6 +61,10 @@ class <%= serviceClassName %> {
     let toPath = this.pathToRegexp.compile(resource.put.url);
     let path = (undefined !== data.content.id) ? toPath({id: data.content.id}) : toPath();
     return this.rest.put(path, data.content, data.formOptions.files, (__DEV__) ? {basePath: '<%= apiBasePath %>' } : undefined)
+    .then(res => {
+      this.logger.success(this.$filter('translate')('<%= constantModuleName %>_FORM_SAVE_SUCCESS'), res.data);
+      return res.data;
+    })
     .catch(err => {
       this.exception.catcher('[<%= serviceClassName %>] Update data error.')(err);
       return this.$q.reject();

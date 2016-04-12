@@ -2,5 +2,6 @@
   "<%= constantModuleName %>": "<%= windowName %>",
   "<%= constantModuleName %>_DESCRIPTION": "<%= description %>",
   "<%= constantModuleName %>_FORM_SETTING": "Setting",
-  "<%= constantModuleName %>_FORM_SAVE": "Save"
+  "<%= constantModuleName %>_FORM_SAVE": "Save",
+  "<%= constantModuleName %>_FORM_SAVE_SUCCESS": "Update data successfully."
 }

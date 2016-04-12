@@ -1,6 +1,7 @@
 import resource from './component.resource.json';
 
-export default (routerHelper) => {
+export default routerHelper => {
+  'ngInject';
   routerHelper.configureStates(getStates());
 
   function getStates() {

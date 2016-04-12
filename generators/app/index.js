@@ -385,7 +385,8 @@ module.exports = generators.Base.extend({
         {
           serviceClassName: this.serviceClassName,
           serviceName: this.serviceName,
-          apiBasePath: this.apiBasePath
+          apiBasePath: this.apiBasePath,
+          constantModuleName: this.constantModuleName
         }
       );
     },
