@@ -13,8 +13,7 @@ module.exports = function(config) {
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-coverage',
-      'karma-mocha-reporter',
-      'karma-es6-shim'
+      'karma-mocha-reporter'
     ],
 
     autoWatch: test,
@@ -31,7 +30,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai', 'sinon-chai', 'es6-shim'],
+    frameworks: ['mocha', 'chai', 'sinon-chai'],
 
 
     // list of files / patterns to load in the browser

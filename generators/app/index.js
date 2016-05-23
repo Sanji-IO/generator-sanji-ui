@@ -164,13 +164,13 @@ module.exports = generators.Base.extend({
         this.serviceName = props.moduleName.toLowerCase() + 'Service';
         this.containerControllerClassName = _.capitalize(props.moduleName.toLowerCase())+ 'ContainerController';
         this.controllerClassName = _.capitalize(props.moduleName.toLowerCase())+ 'Controller';
-        this.containerDirectiveClassName = _.capitalize(props.moduleName.toLowerCase()) + 'ContainerDirective';
-        this.containerDirectiveName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Container';
-        this.windowDirectiveClassName = _.capitalize(props.moduleName.toLowerCase()) + 'WindowDirective';
-        this.windowDirectiveName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Window';
-        this.directiveClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Directive';
-        this.directiveName = 'sanji' + _.capitalize(props.moduleName.toLowerCase());
-        this.directiveTplName = 'sanji-' + props.moduleName.toLowerCase();
+        this.containerComponentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'ContainerComponent';
+        this.containerComponentName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Container';
+        this.windowComponentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'WindowComponent';
+        this.windowComponentName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Window';
+        this.componentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Component';
+        this.componentName = 'sanji' + _.capitalize(props.moduleName.toLowerCase());
+        this.componentTplName = 'sanji-' + props.moduleName.toLowerCase();
         done();
       }.bind(this));
     },
@@ -270,6 +270,7 @@ module.exports = generators.Base.extend({
       this.template('_package.json', 'package.json');
       this.template('_travis.yml', '.travis.yml');
       this.template('editorconfig', '.editorconfig');
+      this.template('babelrc', '.babelrc');
       this.template('eslintrc', '.eslintrc');
       this.template('README.md');
       this.template('index.js');
@@ -306,12 +307,12 @@ module.exports = generators.Base.extend({
           ngModuleName: this.ngModuleName,
           containerControllerClassName: this.containerControllerClassName,
           controllerClassName: this.controllerClassName,
-          containerDirectiveClassName: this.containerDirectiveClassName,
-          containerDirectiveName: this.containerDirectiveName,
-          windowDirectiveClassName: this.windowDirectiveClassName,
-          windowDirectiveName: this.windowDirectiveName,
-          directiveClassName: this.directiveClassName,
-          directiveName: this.directiveName,
+          containerComponentClassName: this.containerComponentClassName,
+          containerComponentName: this.containerComponentName,
+          windowComponentClassName: this.windowComponentClassName,
+          windowComponentName: this.windowComponentName,
+          componentClassName: this.componentClassName,
+          componentName: this.componentName,
           serviceClassName: this.serviceClassName,
           serviceName: this.serviceName
         }
@@ -323,14 +324,14 @@ module.exports = generators.Base.extend({
         {
           appname: this.appname,
           constantModuleName: this.constantModuleName,
-          directiveTplName: this.directiveTplName,
+          componentTplName: this.componentTplName,
           isCollection: this.isCollection
         }
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/component-container.controller.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component-container.controller.js'),
+        this.templatePath('app/component/container.controller.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/container.controller.js'),
         {
           containerControllerClassName: this.containerControllerClassName,
           serviceName: this.serviceName,
@@ -347,34 +348,32 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/component-window.directive.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component-window.directive.js'),
+        this.templatePath('app/component/window.component.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/window.component.js'),
         {
-          windowDirectiveClassName: this.containerDirectiveClassName,
-          directiveTplName: this.directiveTplName,
+          windowComponentClassName: this.containerComponentClassName,
+          componentTplName: this.componentTplName,
           constantModuleName: this.constantModuleName,
           appname: this.appname
         }
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/component-container.directive.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component-container.directive.js'),
+        this.templatePath('app/component/container.component.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/container.component.js'),
         {
           containerControllerClassName: this.containerControllerClassName,
-          containerDirectiveClassName: this.containerDirectiveClassName,
-          directiveTplName: this.directiveTplName
+          containerComponentClassName: this.containerComponentClassName,
+          componentTplName: this.componentTplName
         }
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/component.directive.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component.directive.js'),
+        this.templatePath('app/component/component.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component.js'),
         {
-          directiveTplName: this.directiveTplName,
           controllerClassName: this.controllerClassName,
-          directiveClassName: this.directiveClassName,
-          directiveName: this.directiveName,
+          componentClassName: this.componentClassName,
           isCollection: this.isCollection
         }
       );

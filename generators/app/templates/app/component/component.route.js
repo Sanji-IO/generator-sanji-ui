@@ -11,7 +11,7 @@ export default routerHelper => {
         url: resource.route.url,
         template: `<div layout="row" layout-padding layout-align="center center">
                     <div flex="33">
-                      <<%= directiveTplName %>-window></<%= directiveTplName %>-window>
+                      <<%= componentTplName %>-window></<%= componentTplName %>-window>
                     </div>
                   </div>`,
         authenticate: resource.authenticate,
@@ -19,4 +19,4 @@ export default routerHelper => {
       }
     }];
   }
-}
+};

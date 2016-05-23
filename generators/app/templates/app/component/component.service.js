@@ -5,43 +5,43 @@ class <%= serviceClassName %> {
   constructor(...injects) {
     <%= serviceClassName %>.$inject.forEach((item, index) => this[item] = injects[index]);
     switch(resource.get.type) {
-      case 'collection':
-        this.data = [];
-        break;
-      case 'model':
-        this.data = {};
-        break;
-      default:
-        this.data = [];
+    case 'collection':
+      this.data = [];
+      break;
+    case 'model':
+      this.data = {};
+      break;
+    default:
+      this.data = [];
     }
   }
 
   _transform(data) {
     switch(resource.get.type) {
-      case 'collection':
-        return this._.map(data, (item, index) => {
-          return {
-            title: (resource.get.titlePrefix || 'tab') + index,
-            content: item,
-            formOptions: {},
-            fields: resource.fields
-          };
-        });
-      case 'model':
+    case 'collection':
+      return this._.map(data, (item, index) => {
         return {
-          content: data,
+          title: (resource.get.titlePrefix || 'tab') + index,
+          content: item,
           formOptions: {},
           fields: resource.fields
         };
-      default:
-        return this._.map(data, (item, index) => {
-          return {
-            title: (resource.get.titlePrefix || 'tab') + index,
-            content: item,
-            formOptions: {},
-            fields: resource.fields
-          };
-        });
+      });
+    case 'model':
+      return {
+        content: data,
+        formOptions: {},
+        fields: resource.fields
+      };
+    default:
+      return this._.map(data, (item, index) => {
+        return {
+          title: (resource.get.titlePrefix || 'tab') + index,
+          content: item,
+          formOptions: {},
+          fields: resource.fields
+        };
+      });
     }
   }
 
