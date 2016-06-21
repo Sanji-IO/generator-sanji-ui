@@ -279,11 +279,17 @@ module.exports = generators.Base.extend({
       this.template('webpack.dev.js');
       this.template('webpack.test.js');
       this.template('karma.conf.js');
+      this.template('protractor.conf.js');
     },
 
     gitfiles: function () {
       this.copy('gitattributes', '.gitattributes');
       this.copy('gitignore', '.gitignore');
+    },
+
+    feature: function() {
+      this.template('features/component.feature');
+      this.template('features/component.step.js');
     },
 
     app: function () {
@@ -305,8 +311,6 @@ module.exports = generators.Base.extend({
         this.destinationPath(this.generatorsPrefix, 'app/component/index.js'),
         {
           ngModuleName: this.ngModuleName,
-          containerControllerClassName: this.containerControllerClassName,
-          controllerClassName: this.controllerClassName,
           containerComponentClassName: this.containerComponentClassName,
           containerComponentName: this.containerComponentName,
           windowComponentClassName: this.windowComponentClassName,
@@ -365,6 +369,15 @@ module.exports = generators.Base.extend({
           containerControllerClassName: this.containerControllerClassName,
           containerComponentClassName: this.containerComponentClassName,
           componentTplName: this.componentTplName
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('app/component/container.component.spec.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/container.component.spec.js'),
+        {
+          containerComponentName: this.containerComponentName,
+          serviceName: this.serviceName
         }
       );
 

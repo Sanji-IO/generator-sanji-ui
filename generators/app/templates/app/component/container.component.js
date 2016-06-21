@@ -1,6 +1,7 @@
+import <%= containerControllerClassName %> from './container.controller';
+
 const <%= containerComponentClassName %> = {
-  template: `<<%= componentTplName %> data="vm.data" on-submit="vm.onSave(data)"></<%= componentTplName %>>`,
-  controller: '<%= containerControllerClassName %>',
-  controllerAs: 'vm'
+  template: `<<%= componentTplName %> data="$ctrl.data" on-submit="$ctrl.onSave(data)"></<%= componentTplName %>>`,
+  controller: <%= containerControllerClassName %>
 };
 export default <%= containerComponentClassName %>;

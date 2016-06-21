@@ -1,3 +1,5 @@
+import <%= controllerClassName %> from './component.controller';
+
 const <%= componentClassName %> = {
   bindings: {
     <% if (isCollection) { %>
@@ -8,7 +10,6 @@ const <%= componentClassName %> = {
     submitCallback: '&onSubmit'
   },
   template: require('./component.tpl.html'),
-  controller: '<%= controllerClassName %>',
-  controllerAs: 'vm'
+  controller: <%= controllerClassName %>
 };
 export default <%= componentClassName %> ;

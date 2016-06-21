@@ -13,7 +13,7 @@ module.exports = function(config) {
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-coverage',
-      'karma-mocha-reporter'
+      'karma-spec-reporter'
     ],
 
     autoWatch: test,
@@ -50,7 +50,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['mocha', 'coverage'],
+    reporters: ['spec', 'coverage'],
 
 
     coverageReporter: {
