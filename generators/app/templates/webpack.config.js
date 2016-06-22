@@ -27,11 +27,11 @@ var config = {
   },
   module: {
     preLoaders: [
-      {test: /\.js$/, loader: "eslint", exclude: /(node_modules)/}
+      {test: /\.js$/, loader: 'eslint', exclude: /(node_modules)/}
     ],
     loaders: [
       { test: /\.js$/, loader: 'ng-annotate!babel?cacheDirectory', exclude: /(node_modules)/ },
-      { test: require.resolve("jquery"), loader: "expose?$!expose?jQuery" },
+      { test: require.resolve('jquery'), loader: 'expose?$!expose?jQuery' },
       { test: /\.json$/, loader: 'json', exclude: /node_modules/ },
       { test: /\.html$/, loader: 'ng-cache?prefix=[dir]/[dir]', exclude: /node_modules/ }
     ],
