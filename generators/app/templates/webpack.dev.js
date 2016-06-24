@@ -1,6 +1,7 @@
 'use strict';
 
 var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var bourbon = require('node-bourbon').includePaths;
 var config = require('./webpack.config.js');
@@ -17,18 +18,19 @@ config.entry = {
   ]
 };
 config.module.loaders = [
-  {test: /\.scss/, loader: 'style!css!autoprefixer?browsers=last 2 versions!sass?includePaths[]=' + bourbon},
-  {test: /\.css$/, loader: 'style!css!autoprefixer?browsers=last 2 versions'},
+  {test: /\.scss/, loader: 'style!css!postcss!sass?includePaths[]=' + bourbon},
+  {test: /\.css$/, loader: 'style!css!postcss'},
   {test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192'},
-  {test: /\.(woff|woff2)$/, loader: "url?limit=10000&minetype=application/font-woff"},
-  {test: /\.(ttf|eot|svg)$/, loader: "file"}
+  {test: /\.(woff|woff2)$/, loader: 'url?limit=10000&minetype=application/font-woff'},
+  {test: /\.(ttf|eot|svg)$/, loader: 'file'}
 ].concat(config.module.loaders);
+
+config.postcss = [ autoprefixer({ browsers: ['last 2 versions'] }) ];
 
 config.plugins.push(
   new webpack.HotModuleReplacementPlugin(),
   new HtmlWebpackPlugin({
-    template: 'app/index.html',
-    inject: 'body',
+    template: 'index.html',
     hash: true
   })
 );

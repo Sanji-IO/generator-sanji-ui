@@ -1,16 +1,24 @@
 'use strict';
 
 require('babel-core/register')({
-  ignore: /node_modules/
+  presets: ['es2015-webpack'],
+  plugins: ['transform-runtime', 'transform-es2015-modules-commonjs'],
+  only: 'step'
 });
 
 exports.config = {
+  onPrepare: function () {
+    browser.ignoreSynchronization = true;
+    browser.driver.manage().window().maximize();
+  },
+
   baseUrl: 'http://localhost:8080',
 
-  seleniumAddress: 'http://localhost:4444/wd/hub',
+  directConnect: true,
+  chromeDriver: './node_modules/protractor/selenium/chromedriver',
 
   capabilities: {
-    browserName: 'phantomjs',
+    browserName: 'chrome',
     version: '',
     platform: 'ANY'
   },
@@ -20,10 +28,6 @@ exports.config = {
   specs: [
     'features/*.feature'
   ],
-
-  jasmineNodeOpts: {
-    showColors: true
-  },
 
   cucumberOpts: {
     require: 'features/component.step.js',
