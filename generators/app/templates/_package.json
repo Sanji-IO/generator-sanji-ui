@@ -55,7 +55,7 @@
     "karma-chai-plugins": "~0.7.0",
     "karma-chrome-launcher": "~1.0.1",
     "karma-coverage": "~1.0.0",
-    "karma-mocha": "~1.0.1",
+    "karma-mocha": "~1.1.1",
     "karma-sourcemap-loader": "~0.3.7",
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "~1.7.0",
@@ -67,11 +67,11 @@
     "postcss-loader": "~0.9.1",
     "protractor": "~2.5.1",
     "raw-loader": "~0.5.1",
-    "sass-loader": "~3.2.0",
+    "sass-loader": "~4.0.0",
     "semantic-release": "^6.2.0",
     "style-loader": "~0.13.0",
     "url-loader": "~0.5.7",
-    "webpack": "2.1.0-beta.13",
+    "webpack": "2.1.0-beta.15",
     "webpack-dev-server": "2.1.0-beta.0"
   },
   "keywords": [
