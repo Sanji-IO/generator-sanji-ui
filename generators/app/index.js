@@ -282,6 +282,10 @@ module.exports = generators.Base.extend({
       this.template('protractor.conf.js');
     },
 
+    npmfiles: function () {
+      this.copy('npmignore', '.npmignore');
+    },
+
     gitfiles: function () {
       this.copy('gitattributes', '.gitattributes');
       this.copy('gitignore', '.gitignore');
@@ -310,6 +314,7 @@ module.exports = generators.Base.extend({
         this.templatePath('app/component/index.js'),
         this.destinationPath(this.generatorsPrefix, 'app/component/index.js'),
         {
+          libraryName: this.libraryName,
           ngModuleName: this.ngModuleName,
           containerComponentClassName: this.containerComponentClassName,
           containerComponentName: this.containerComponentName,
@@ -376,6 +381,7 @@ module.exports = generators.Base.extend({
         this.templatePath('app/component/container.component.spec.js'),
         this.destinationPath(this.generatorsPrefix, 'app/component/container.component.spec.js'),
         {
+          libraryName: this.libraryName,
           containerComponentName: this.containerComponentName,
           serviceName: this.serviceName
         }

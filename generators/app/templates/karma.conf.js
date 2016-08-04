@@ -3,6 +3,7 @@
 
 var webpackConfig = require('./webpack.test');
 var test = process.env.NODE_ENV === 'test';
+var IS_TRAVIS = process.env.TRAVIS;
 
 module.exports = function(config) {
   config.set({
@@ -15,6 +16,13 @@ module.exports = function(config) {
       'karma-coverage',
       'karma-spec-reporter'
     ],
+
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
 
     autoWatch: test,
 
@@ -62,17 +70,6 @@ module.exports = function(config) {
     },
 
 
-    // Mocha reporter options
-    mochaReporter: {
-      colors: {
-        success: 'blue',
-        info: 'bgGreen',
-        warning: 'cyan',
-        error: 'bgRed'
-      }
-    },
-
-
     // web server port
     port: 9876,
 
@@ -88,7 +85,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: [(IS_TRAVIS) ? 'Chrome_travis_ci' : 'Chrome'],
 
 
     // Continuous Integration mode

@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-mocks';
 
 import './sanji-core-ui';
-import sjToken from './index';
+import { <%= libraryName %> } from './index';
 
 describe('Container component', () => {
   let $rootScope;
@@ -10,7 +10,7 @@ describe('Container component', () => {
   let controller;
   let sandbox;
 
-  beforeEach(angular.mock.module(sjToken));
+  beforeEach(angular.mock.module({ <%= libraryName %> }));
 
   beforeEach(angular.mock.inject(($componentController, _$rootScope_, _$q_, <%= serviceName %>) => {
     $rootScope = _$rootScope_;

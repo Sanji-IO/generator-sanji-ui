@@ -1,6 +1,8 @@
+import _ from 'lodash';
+
 import resource from './component.resource.json';
 
-const $inject = ['$q', 'rest', 'exception', '_', 'pathToRegexp', '$filter', 'logger'];
+const $inject = ['$q', 'rest', 'exception', 'pathToRegexp', '$filter', 'logger'];
 class <%= serviceClassName %> {
   constructor(...injects) {
     <%= serviceClassName %>.$inject.forEach((item, index) => this[item] = injects[index]);
@@ -19,7 +21,7 @@ class <%= serviceClassName %> {
   _transform(data) {
     switch(resource.get.type) {
     case 'collection':
-      return this._.map(data, (item, index) => {
+      return _.map(data, (item, index) => {
         return {
           title: (resource.get.titlePrefix || 'tab') + index,
           content: item,
@@ -34,7 +36,7 @@ class <%= serviceClassName %> {
         fields: resource.fields
       };
     default:
-      return this._.map(data, (item, index) => {
+      return _.map(data, (item, index) => {
         return {
           title: (resource.get.titlePrefix || 'tab') + index,
           content: item,

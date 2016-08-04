@@ -16,6 +16,7 @@
     "angular": true,
     "FileSaver": true,
     "sinon": true,
+    "expect": true,
     "__DEV__": true,
     "__TEST__": true,
     "__RELEASE__": true,
