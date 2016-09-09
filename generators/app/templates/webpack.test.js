@@ -1,8 +1,8 @@
 'use strict';
 
-var config = require('./webpack.config');
-var autoprefixer = require('autoprefixer');
-var bourbon = require('node-bourbon').includePaths;
+const config = require('./webpack.config');
+const autoprefixer = require('autoprefixer');
+const bourbon = require('node-bourbon').includePaths;
 
 config.devtool = 'source-map';
 // Should be an empty object if it's generating a test build

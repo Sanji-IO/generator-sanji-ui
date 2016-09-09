@@ -1,11 +1,11 @@
 'use strict';
 
-var webpack = require('webpack');
-var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-var autoprefixer = require('autoprefixer');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var bourbon = require('node-bourbon').includePaths;
-var config = require('./webpack.config.js');
+const webpack = require('webpack');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const bourbon = require('node-bourbon').includePaths;
+const config = require('./webpack.config.js');
 
 config.devtool = 'source-map';
 config.entry = {
