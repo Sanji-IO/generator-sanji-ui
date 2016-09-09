@@ -360,7 +360,7 @@ module.exports = generators.Base.extend({
         this.templatePath('app/component/window.component.js'),
         this.destinationPath(this.generatorsPrefix, 'app/component/window.component.js'),
         {
-          windowComponentClassName: this.containerComponentClassName,
+          windowComponentClassName: this.windowComponentClassName,
           componentTplName: this.componentTplName,
           constantModuleName: this.constantModuleName,
           appname: this.appname
