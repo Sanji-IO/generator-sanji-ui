@@ -1,5 +1,4 @@
-'use strict';
-
+const webpack = require('webpack');
 const config = require('./webpack.config');
 const autoprefixer = require('autoprefixer');
 const bourbon = require('node-bourbon').includePaths;
@@ -12,14 +11,22 @@ config.entry = {};
 // Karma will handle setting it up for you when it's a test build
 config.output = {};
 
-config.module.loaders = [
+config.module.rules = [
   {test: /\.scss/, loader: 'style!css!postcss!sass?includePaths[]=' + bourbon},
   {test: /\.css$/, loader: 'style!css!postcss'},
   {test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192'},
   {test: /\.(woff|woff2)$/, loader: 'url?limit=10000&minetype=application/font-woff'},
   {test: /\.(ttf|eot|svg)$/, loader: 'file'}
-].concat(config.module.loaders);
+].concat(config.module.rules);
 
-config.postcss = [ autoprefixer({ browsers: ['last 2 versions'] }) ];
+config.plugins.push(
+  new webpack.LoaderOptionsPlugin({
+    options:{
+      postcss: [
+        autoprefixer({ browsers: ['last 2 versions'] })
+      ]
+    }
+  })
+);
 
 module.exports = config;
