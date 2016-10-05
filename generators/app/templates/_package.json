@@ -19,18 +19,20 @@
     "protractor": "protractor protractor.conf.js",
     "prebuild": "rimraf <%= uuid %> && mkdir <%= uuid %>",
     "build": "cross-env NODE_ENV=production webpack --config webpack.build.js --display-modules",
-    "postbuild": "cpy ./app/component/component.resource.json ./<%= uuid %>/ && tar zcvf <%= uuid %>.tar.gz ./<%= uuid %>",
+    "postbuild": "cpy ./app/component/component.resource.json ./<%= uuid %>/ && targz compress ./<%= uuid %> <%= uuid %>.tar.gz",
     "commit": "git-cz",
     "check-coverage": "istanbul check-coverage --statements 75 --branches 75 --functions 75 --lines 75",
-    "report-coverage": "cat ./coverage/lcov.info | codecov",
+    "report-coverage": "catw ./coverage/lcov.info -o | codecov",
     "start": "cross-env NODE_ENV=development node server/dev-server.js",
     "release": "standard-version"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.0",
+    "catw": "^1.0.1",
     "cpy-cli": "^1.0.1",
     "sanji-common-devs-ui": "~1.0.2",
-    "standard-version": "^2.4.0"
+    "standard-version": "^2.4.0",
+    "tar.gz": "^1.0.5"
   },
   "keywords": [
     "sanji"

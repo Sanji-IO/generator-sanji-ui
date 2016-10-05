@@ -20,7 +20,8 @@
     "__DEV__": true,
     "__TEST__": true,
     "__RELEASE__": true,
-    "__BASE_PATH__": true
+    "__BASE_PATH__": true,
+    "__API_TOKEN__": true
   },
   "rules": {
     "indent": [ 2, 2 ],

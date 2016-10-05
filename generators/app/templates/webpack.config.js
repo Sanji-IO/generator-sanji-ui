@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV;
 const DEV_BASE_PATH = process.env.BASE_PATH;
+const API_TOKEN = process.env.API_TOKEN;
 const nodeRoot = path.join(__dirname, 'node_modules');
 const appRoot = path.join(__dirname, 'app');
 const config = {
@@ -36,7 +37,8 @@ const config = {
       __TEST__: 'test' === NODE_ENV,
       __DEV__: 'development' === NODE_ENV,
       __RELEASE__: 'production' === NODE_ENV,
-      __BASE_PATH__: JSON.stringify(DEV_BASE_PATH) || '"http://localhost:8000"'
+      __BASE_PATH__: JSON.stringify(DEV_BASE_PATH) || '"<%= apiBasePath %>"',
+      __API_TOKEN__: JSON.stringify(API_TOKEN) || '""'
     })
   ]
 };

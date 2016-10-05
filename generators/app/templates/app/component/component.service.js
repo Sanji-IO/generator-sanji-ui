@@ -6,6 +6,23 @@ const $inject = ['$q', 'rest', 'exception', 'pathToRegexp', '$filter', 'logger']
 class <%= serviceClassName %> {
   constructor(...injects) {
     <%= serviceClassName %>.$inject.forEach((item, index) => this[item] = injects[index]);
+    this.message = {
+      read: {
+        error: '[<%= serviceClassName %>] Get data error.'
+      },
+      update: {
+        success: '<%= constantModuleName %>_FORM_SAVE_SUCCESS',
+        error: '[<%= serviceClassName %>] Update data error.'
+      }
+    };
+    this.restConfig = {
+      basePath: (__DEV__) ? __BASE_PATH__ : undefined,
+    };
+    if (__DEV__) {
+      this.restConfig.headers = {
+        'mx-api-token': __API_TOKEN__
+      };
+    }
     switch(resource.get.type) {
     case 'collection':
       this.data = [];
@@ -48,27 +65,25 @@ class <%= serviceClassName %> {
   }
 
   get() {
-    let toPath = this.pathToRegexp.compile(resource.get.url);
-    return this.rest.get(toPath(), (__DEV__) ? {basePath: '<%= apiBasePath %>'} : undefined)
-    .then(res => {
-      return this.data = this._transform(res.data);
-    })
+    const toPath = this.pathToRegexp.compile(resource.get.url);
+    return this.rest.get(toPath(), this.restConfig)
+    .then(res => this.data = this._transform(res.data))
     .catch(err => {
-      this.exception.catcher('[<%= serviceClassName %>] Get data error.')(err);
+      this.exception.catcher(this.$filter('translate')(this.message.read.error))(err);
       return this.$q.reject();
     });
   }
 
   update(data) {
-    let toPath = this.pathToRegexp.compile(resource.put.url);
-    let path = (undefined !== data.content.id) ? toPath({id: data.content.id}) : toPath();
-    return this.rest.put(path, data.content, data.formOptions.files, (__DEV__) ? {basePath: '<%= apiBasePath %>' } : undefined)
+    const toPath = this.pathToRegexp.compile(resource.put.url);
+    const path = (undefined !== data.content.id) ? toPath({id: data.content.id}) : toPath();
+    return this.rest.put(path, data.content, data.formOptions.files, this.restConfig)
     .then(res => {
-      this.logger.success(this.$filter('translate')('<%= constantModuleName %>_FORM_SAVE_SUCCESS'), res.data);
+      this.logger.success(this.$filter('translate')(this.message.update.success), res.data);
       return res.data;
     })
     .catch(err => {
-      this.exception.catcher('[<%= serviceClassName %>] Update data error.')(err);
+      this.exception.catcher(this.$filter('translate')(this.message.update.error))(err);
       return this.$q.reject();
     });
   }
