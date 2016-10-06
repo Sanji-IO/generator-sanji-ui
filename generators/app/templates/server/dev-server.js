@@ -7,10 +7,10 @@ new WebpackDevServer(webpack(config), {
     colors: true,
   }
 })
-.listen(8080, 'localhost', function(err) {
+.listen(8080, '0.0.0.0', function(err) {
   if (err) {
     throw err;
   }
-  console.log('Listening at localhost:8080');
+  console.log('Listening at 0.0.0.0:8080');
 });
 
