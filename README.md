@@ -2,8 +2,21 @@
 
 ## Install
 
+Setup development enviroment
 ```sh
-npm install -g generator-sanji-ui
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+nvm install 4
+npm update -g npm
+```
+
+Install generator
+```sh
+npm install -g yo generator-sanji-ui
+```
+
+## Upgrade Generator
+```sh
+npm update -g generator-sanji-ui
 ```
 
 ## Getting Started
