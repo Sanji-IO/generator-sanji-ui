@@ -12,7 +12,7 @@
     "state": "application.<%= moduleName %>",
     "url": "/<%= moduleName %>"
   },
-  "authenticate": ["admin"],
+  "authenticate": ["root", "admin", "user"],
   "files": ["<%= appname %>.js"],
   "get": {
     "url": "<%= endpoint %>",
