@@ -14,6 +14,11 @@ API_TOKEN=xxxx BASE_PATH=https://192.168.31.11/api/v1 npm start
 npm run build
 ```
 
+## Build Debian Package
+```sh
+make dist && make -C build-deb
+```
+
 ## Form Configuration
 Modify `component.resource.json` file to create form elements by editing `fields` property.
 You can reference [build-in form element](https://github.com/Sanji-IO/sanji-core-ui#form-config)

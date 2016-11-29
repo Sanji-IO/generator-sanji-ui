@@ -1,0 +1,13 @@
+Source: <%= appname %>
+Section: misc
+Priority: optional
+Maintainer: <%= realname %> <<%= email %>>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+Homepage: http://www.moxa.com
+
+Package: <%= appname %>
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: <%= description %>
+

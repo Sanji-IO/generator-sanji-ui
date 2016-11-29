@@ -1,0 +1,5 @@
+<%= appname %> (<%= version %>-0) unstable; urgency=low
+
+  * Initial Release.
+
+ -- <%= realname %> <<%= email %>>  Wed, 09 Nov 2016 14:02:30 +0800

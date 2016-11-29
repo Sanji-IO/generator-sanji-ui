@@ -280,6 +280,18 @@ module.exports = generators.Base.extend({
       this.template('webpack.test.js');
       this.template('karma.conf.js');
       this.template('protractor.conf.js');
+      this.template('Makefile');
+    },
+
+    debfiles: function() {
+      this.template('build-deb/Makefile');
+      this.template('build-deb/debian/changelog');
+      this.template('build-deb/debian/control');
+      this.template('build-deb/debian/postinst');
+      this.copy('build-deb/debian/copyright');
+      this.copy('build-deb/debian/compat');
+      this.copy('build-deb/debian/rules');
+      this.copy('build-deb/debian/source/format');
     },
 
     npmfiles: function () {
