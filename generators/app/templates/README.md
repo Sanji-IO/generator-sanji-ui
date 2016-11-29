@@ -16,6 +16,7 @@ npm run build
 
 ## Build Debian Package
 ```sh
+npm run build
 make dist && make -C build-deb
 ```
 
