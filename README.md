@@ -4,9 +4,8 @@
 
 Setup development enviroment
 ```sh
-wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
-nvm install 4
-npm update -g npm
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+nvm install 6
 ```
 
 Install generator
