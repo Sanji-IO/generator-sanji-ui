@@ -14,7 +14,6 @@
   },
   "globals": {
     "angular": true,
-    "FileSaver": true,
     "sinon": true,
     "expect": true,
     "__DEV__": true,
@@ -24,7 +23,13 @@
     "__API_TOKEN__": true
   },
   "rules": {
-    "indent": [ 2, 2 ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
     "quotes": [ 2, "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
     "linebreak-style": [ 2, "unix" ],
     "semi": [ 2, "always" ],

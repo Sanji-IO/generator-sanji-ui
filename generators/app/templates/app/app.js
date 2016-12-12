@@ -5,9 +5,9 @@ import 'toastr.css';
 import './app.scss';
 import angular from 'angular';
 import { sjCore } from 'sanji-core-ui';
-import { <%= libraryName %> } from './component';
+import { <%= libraryName %>, <%= moduleName %> } from './component';
 
-const app = angular.module('webapp', [<%= libraryName %>, sjCore]);
+const app = angular.module('webapp', [sjCore, <%= libraryName %>]);
 class AppController {
   constructor($translate, LANG_KEYS) {
     this.$translate = $translate;
@@ -20,6 +20,9 @@ class AppController {
   }
 }
 app.controller('AppController', AppController);
+app.config(reduxHelperProvider => {
+  reduxHelperProvider.configure({<%= moduleName %>}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+});
 
 angular.element(document).ready(() => {
   angular.bootstrap(document.body, ['webapp']);

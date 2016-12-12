@@ -162,6 +162,8 @@ module.exports = generators.Base.extend({
         this.libraryName = 'sj' + _.capitalize(props.moduleName.toLowerCase());
         this.serviceClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Service';
         this.serviceName = props.moduleName.toLowerCase() + 'Service';
+        this.actionClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Action';
+        this.actionName = props.moduleName.toLowerCase() + 'Action';
         this.containerControllerClassName = _.capitalize(props.moduleName.toLowerCase())+ 'ContainerController';
         this.controllerClassName = _.capitalize(props.moduleName.toLowerCase())+ 'Controller';
         this.containerComponentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'ContainerComponent';
@@ -335,7 +337,11 @@ module.exports = generators.Base.extend({
           componentClassName: this.componentClassName,
           componentName: this.componentName,
           serviceClassName: this.serviceClassName,
-          serviceName: this.serviceName
+          serviceName: this.serviceName,
+          actionClassName: this.actionClassName,
+          actionName: this.actionName,
+          moduleName: this.moduleName,
+          constantModuleName: this.constantModuleName
         }
       );
 
@@ -356,7 +362,10 @@ module.exports = generators.Base.extend({
         {
           containerControllerClassName: this.containerControllerClassName,
           serviceName: this.serviceName,
-          appname: this.appname
+          appname: this.appname,
+          actionName: this.actionName,
+          windowName: this.windowName,
+          moduleName: this.moduleName
         }
       );
 
@@ -410,13 +419,27 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
+        this.templatePath('app/component/component.state.js'),
+        this.destinationPath(this.generatorsPrefix, 'app/component/component.state.js'),
+        {
+          constantModuleName: this.constantModuleName,
+          actionClassName: this.actionClassName,
+          serviceName: this.serviceName,
+          windowName: this.windowName,
+          moduleName: this.moduleName,
+          isCollection: this.isCollection
+        }
+      );
+
+      this.fs.copyTpl(
         this.templatePath('app/component/component.service.js'),
         this.destinationPath(this.generatorsPrefix, 'app/component/component.service.js'),
         {
           serviceClassName: this.serviceClassName,
           serviceName: this.serviceName,
           apiBasePath: this.apiBasePath,
-          constantModuleName: this.constantModuleName
+          constantModuleName: this.constantModuleName,
+          isCollection: this.isCollection
         }
       );
     },

@@ -1,4 +1,4 @@
-const $inject = ['$scope', 'sanjiWindowService', '<%= serviceName %>'];
+const $inject = ['$scope', '$ngRedux', 'sanjiWindowService', '<%= actionName %>'];
 const WINDOW_ID = '<%= appname %>';
 class <%= containerControllerClassName %> {
   constructor(...injects) {
@@ -7,18 +7,30 @@ class <%= containerControllerClassName %> {
 
   $onInit() {
     this.sanjiWindowMgr = this.sanjiWindowService.get(WINDOW_ID);
-    this.$scope.$on('sj:window:refresh', this.onRefresh.bind(this));
-    this.sanjiWindowMgr.promise = this.<%= serviceName %>.get().then(result => this.data = result);
+    this.unhandler = this.$scope.$on('sj:window:refresh', this.onRefresh.bind(this));
+    this.unsubscribe = this.$ngRedux.connect(this.mapStateToThis, this.<%= actionName %>)(this);
+    this.sanjiWindowMgr.promise = this.get<%= windowName %>();
+  }
+
+  $onDestroy() {
+    this.unsubscribe();
+    this.unhandler();
+  }
+
+  mapStateToThis(state) {
+    return {
+      data: state.<%= moduleName %>
+    };
   }
 
   onRefresh(event, args) {
     if (args.id === WINDOW_ID) {
-      this.$onInit();
+      this.sanjiWindowMgr.promise = this.get<%= windowName %>({force: true});
     }
   }
 
-  onSave(data) {
-    this.sanjiWindowMgr.promise = this.<%= serviceName %>.update(data);
+  onSave(event) {
+    this.sanjiWindowMgr.promise = this.update<%= windowName %>(event.data);
   }
 }
 <%= containerControllerClassName %>.$inject = $inject;
