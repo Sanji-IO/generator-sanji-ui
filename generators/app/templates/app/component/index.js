@@ -13,6 +13,9 @@ const <%= libraryName %> = angular.module('<%= ngModuleName %>', [])
   .component('<%= containerComponentName %>', <%= containerComponentClassName %>)
   .component('<%= componentName %>', <%= componentClassName %>)
   .component('<%= windowComponentName %>', <%= windowComponentClassName %>)
+  .run(reduxHelper => {
+    reduxHelper.injectAsyncReducer('<%= moduleName %>', <%= moduleName %>);
+  })
   .run(route)
   .name;
 export { <%= libraryName %>, <%= actionClassName %>, <%= moduleName %>, GET_<%= constantModuleName %>, UPDATE_<%= constantModuleName %> };
