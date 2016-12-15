@@ -14,6 +14,7 @@ const <%= libraryName %> = angular.module('<%= ngModuleName %>', [])
   .component('<%= componentName %>', <%= componentClassName %>)
   .component('<%= windowComponentName %>', <%= windowComponentClassName %>)
   .run(reduxHelper => {
+    'ngInject';
     reduxHelper.injectAsyncReducer('<%= moduleName %>', <%= moduleName %>);
   })
   .run(route)
