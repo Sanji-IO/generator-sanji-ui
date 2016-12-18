@@ -12,7 +12,7 @@ config.entry = {
 config.output.filename = '<%= appname %>.js';
 
 config.module.rules = [
-  {test: /\.js$/, loader: 'ng-annotate-loader', exclude: /(node_modules)/, enforce: 'post'},
+  {test: /\.js$/, use: 'ng-annotate-loader', exclude: /(node_modules)/, enforce: 'post'},
   {
     test: /\.scss$/,
     loader: ExtractTextPlugin.extract({

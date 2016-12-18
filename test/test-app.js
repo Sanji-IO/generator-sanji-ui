@@ -28,13 +28,6 @@ describe('sanji-ui:app', function () {
       'webpack.build.js',
       'app/app.js',
       'app/index.html',
-      // 'app/component/component-edit.tpl.html',
-      // 'app/component/component-info.tpl.html',
-      // 'app/component/component-main.tpl.html',
-      // 'app/component/component.controller.js',
-      // 'app/component/component.service.js',
-      // 'app/component/component.directive.js',
-      // 'app/component/index.js',
       'server/dev-server.js'
     ]);
   });

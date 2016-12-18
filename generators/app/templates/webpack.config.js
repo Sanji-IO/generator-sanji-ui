@@ -5,7 +5,7 @@ const NODE_ENV = process.env.NODE_ENV;
 const DEV_BASE_PATH = process.env.BASE_PATH;
 const API_TOKEN = process.env.API_TOKEN;
 const nodeRoot = path.join(__dirname, 'node_modules');
-const appRoot = path.join(__dirname, 'app');
+const appRoot = path.join(__dirname, 'src');
 const config = {
   context: appRoot,
   output: {
@@ -24,19 +24,19 @@ const config = {
   },
   module: {
     rules: [
-      { test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/, enforce: 'pre' },
-      { test: /\.js$/, loader: 'babel-loader?cacheDirectory', exclude: /(node_modules)/ },
+      { test: /\.js$/, use: 'eslint-loader', exclude: /node_modules/, enforce: 'pre' },
+      { test: /\.js$/, use: 'babel-loader?cacheDirectory', exclude: /(node_modules)/ },
       { test: require.resolve('jquery'), loader: 'expose-loader?$!expose-loader?jQuery' },
-      { test: /\.json$/, loader: 'json-loader', exclude: /node_modules/ },
-      { test: /\.html$/, loader: 'ng-cache-loader?prefix=[dir]/[dir]', exclude: [/node_modules/, path.join(__dirname, '/app/index.html')] }
+      { test: /\.json$/, use: 'json-loader', exclude: /node_modules/ },
+      { test: /\.html$/, use: 'ng-cache-loader?prefix=[dir]/[dir]', exclude: [/node_modules/, path.join(__dirname, '/src/index.html')] }
     ]
   },
   plugins: [
     new ProgressBarPlugin(),
     new webpack.DefinePlugin({
-      __TEST__: 'test' === NODE_ENV,
-      __DEV__: 'development' === NODE_ENV,
-      __RELEASE__: 'production' === NODE_ENV,
+      'process.env': {
+        'NODE_ENV': JSON.stringify(NODE_ENV || 'development')
+      },
       __BASE_PATH__: JSON.stringify(DEV_BASE_PATH) || '"<%= apiBasePath %>"',
       __API_TOKEN__: JSON.stringify(API_TOKEN) || '""'
     })

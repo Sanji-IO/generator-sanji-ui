@@ -1,5 +1,5 @@
 NAME = <%= appname %>
-VERSION = $(shell cat app/component/component.resource.json | sed -n 's/"version"//p' | tr -d '", :')
+VERSION = $(shell cat src/component/component.resource.json | sed -n 's/"version"//p' | tr -d '", :')
 
 PROJECT = $(NAME)
 

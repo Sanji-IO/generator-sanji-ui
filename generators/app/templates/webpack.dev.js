@@ -13,12 +13,28 @@ config.entry = {
   ]
 };
 config.module.rules = [
-  {test: /\.js$/, loader: 'ng-annotate-loader', exclude: /(node_modules)/, enforce: 'post'},
-  {test: /\.scss/, loader: 'style-loader!css-loader!postcss-loader!sass-loader?includePaths[]=' + bourbon},
-  {test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader?browsers=last 2 versions'},
-  {test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192', exclude: /node_modules/},
-  {test: /\.(woff|woff2)$/, loader: 'url-loader?limit=10000&minetype=application/font-woff', exclude: /node_modules/},
-  {test: /\.(ttf|eot|svg)$/, loader: 'file-loader', exclude: /node_modules/}
+  {test: /\.js$/, use: 'ng-annotate-loader', exclude: /(node_modules)/, enforce: 'post'},
+  {
+    test: /\.scss/,
+    use: ['style-loader', 'css-loader', 'postcss-loader', {
+      loader: 'sass-loader',
+      options: {
+        includePaths: bourbon
+      }
+    }]
+  },
+  {
+    test: /\.css$/,
+    use: ['style-loader', 'css-loader', {
+      loader: 'postcss-loader',
+      options: {
+        browsers: 'last 2 versions'
+      }
+    }]
+  },
+  {test: /\.(png|jpg|gif|jpeg)$/, use: 'url-loader?limit=8192', exclude: /node_modules/},
+  {test: /\.(woff|woff2)$/, use: 'url-loader?limit=10000&minetype=application/font-woff', exclude: /node_modules/},
+  {test: /\.(ttf|eot|svg)$/, use: 'file-loader', exclude: /node_modules/}
 ].concat(config.module.rules);
 
 config.plugins.push(

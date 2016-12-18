@@ -311,22 +311,22 @@ module.exports = generators.Base.extend({
     },
 
     app: function () {
-      this.template('app/index.html');
-      this.template('app/app.js');
-      this.template('app/app.test.js');
-      this.template('app/app.scss');
+      this.template('src/index.html');
+      this.template('src/app.js');
+      this.template('src/app.test.js');
+      this.template('src/app.scss');
     },
 
     component: function() {
-      this.template('app/component/component.resource.json');
-      this.template('app/component/component.route.js');
-      this.template('app/component/component.i18n.js');
-      this.template('app/component/lang/en.json');
-      this.template('app/component/lang/zh-tw.json');
+      this.template('src/component/component.resource.json');
+      this.template('src/component/component.route.js');
+      this.template('src/component/component.i18n.js');
+      this.template('src/component/lang/en.json');
+      this.template('src/component/lang/zh-tw.json');
 
       this.fs.copyTpl(
-        this.templatePath('app/component/index.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/index.js'),
+        this.templatePath('src/component/index.js'),
+        this.destinationPath(this.generatorsPrefix, 'src/component/index.js'),
         {
           libraryName: this.libraryName,
           ngModuleName: this.ngModuleName,
@@ -346,8 +346,8 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/component.tpl.html'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component.tpl.html'),
+        this.templatePath('src/component/component.tpl.html'),
+        this.destinationPath(this.generatorsPrefix, 'src/component/component.tpl.html'),
         {
           appname: this.appname,
           constantModuleName: this.constantModuleName,
@@ -357,8 +357,8 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/container.controller.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/container.controller.js'),
+        this.templatePath('src/component/container.controller.js'),
+        this.destinationPath(this.generatorsPrefix, 'src/component/container.controller.js'),
         {
           containerControllerClassName: this.containerControllerClassName,
           serviceName: this.serviceName,
@@ -370,16 +370,16 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/component.controller.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component.controller.js'),
+        this.templatePath('src/component/component.controller.js'),
+        this.destinationPath(this.generatorsPrefix, 'src/component/component.controller.js'),
         {
           controllerClassName: this.controllerClassName
         }
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/window.component.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/window.component.js'),
+        this.templatePath('src/component/window.component.js'),
+        this.destinationPath(this.generatorsPrefix, 'src/component/window.component.js'),
         {
           windowComponentClassName: this.windowComponentClassName,
           componentTplName: this.componentTplName,
@@ -389,8 +389,8 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/container.component.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/container.component.js'),
+        this.templatePath('src/component/container.component.js'),
+        this.destinationPath(this.generatorsPrefix, 'src/component/container.component.js'),
         {
           containerControllerClassName: this.containerControllerClassName,
           containerComponentClassName: this.containerComponentClassName,
@@ -399,8 +399,8 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/container.component.spec.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/container.component.spec.js'),
+        this.templatePath('src/component/container.component.spec.js'),
+        this.destinationPath(this.generatorsPrefix, 'src/component/container.component.spec.js'),
         {
           libraryName: this.libraryName,
           containerComponentName: this.containerComponentName,
@@ -409,8 +409,8 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/component.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component.js'),
+        this.templatePath('src/component/component.js'),
+        this.destinationPath(this.generatorsPrefix, 'src/component/component.js'),
         {
           controllerClassName: this.controllerClassName,
           componentClassName: this.componentClassName,
@@ -419,8 +419,8 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/component.state.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component.state.js'),
+        this.templatePath('src/component/component.state.js'),
+        this.destinationPath(this.generatorsPrefix, 'src/component/component.state.js'),
         {
           constantModuleName: this.constantModuleName,
           actionClassName: this.actionClassName,
@@ -432,8 +432,8 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('app/component/component.service.js'),
-        this.destinationPath(this.generatorsPrefix, 'app/component/component.service.js'),
+        this.templatePath('src/component/component.service.js'),
+        this.destinationPath(this.generatorsPrefix, 'src/component/component.service.js'),
         {
           serviceClassName: this.serviceClassName,
           serviceName: this.serviceName,

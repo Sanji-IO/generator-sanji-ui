@@ -1,9 +1,6 @@
-// Karma configuration
-'use strict';
-
-var webpackConfig = require('./webpack.test');
-var test = process.env.NODE_ENV === 'test';
-var IS_TRAVIS = process.env.TRAVIS;
+const webpackConfig = require('./webpack.test');
+const test = process.env.NODE_ENV === 'test';
+const IS_TRAVIS = process.env.TRAVIS;
 
 module.exports = function(config) {
   config.set({
@@ -43,7 +40,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/app.test.js'
+      'src/app.test.js'
     ],
 
 
@@ -51,7 +48,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     // run the bundle through the webpack and sourcemap plugins
     preprocessors: {
-      'app/app.test.js': [ 'webpack', 'sourcemap' ]
+      'src/app.test.js': [ 'webpack', 'sourcemap' ]
     },
 
 

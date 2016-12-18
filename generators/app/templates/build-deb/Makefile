@@ -1,7 +1,7 @@
 PROJ_DIR    = $(abspath ..)
 
 NAME = <%= appname %>
-VERSION = $(shell cat $(PROJ_DIR)/app/component/component.resource.json | sed -n 's/"version"//p' | tr -d '", :')
+VERSION = $(shell cat $(PROJ_DIR)/src/component/component.resource.json | sed -n 's/"version"//p' | tr -d '", :')
 
 PROJECT = $(NAME)
 DEBVERSION  = 1
