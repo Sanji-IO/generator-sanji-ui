@@ -5,7 +5,9 @@ class <%= controllerClassName %> {
   }
 
   save(data) {
-    this.submitCallback({data: data});
+    this.submitCallback({
+      $event: {data: data}
+    });
   }
 }
 <%= controllerClassName %>.$inject = $inject;
