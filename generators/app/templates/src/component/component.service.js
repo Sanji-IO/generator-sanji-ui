@@ -14,9 +14,9 @@ class <%= serviceClassName %> {
       }
     };
     this.restConfig = {
-      basePath: (__DEV__) ? __BASE_PATH__ : undefined,
+      basePath: (process.env.NODE_ENV === 'development') ? __BASE_PATH__ : undefined,
     };
-    if (__DEV__) {
+    if (process.env.NODE_ENV === 'development') {
       this.restConfig.headers = {
         'mx-api-token': __API_TOKEN__
       };

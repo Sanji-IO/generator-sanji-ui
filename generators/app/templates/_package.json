@@ -40,6 +40,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "sanji-core-ui": "~1.17.20"
+    "sanji-core-ui": "~2.0.0"
   }
 }
