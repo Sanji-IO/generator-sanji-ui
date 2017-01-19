@@ -30,9 +30,17 @@ export const <%= actionClassName %> = ($q, <%= serviceName %>) => {
   };
 
   const update<%= windowName %> = data => {
-    return (dispatch) => {
-      return <%= serviceName %>.update(data)
-        .then(() => dispatch({ type: UPDATE_<%= constantModuleName %>, payload: data }));
+    return dispatch => {
+      if (data.formOptions.files) {
+        return <%= serviceName %>.upload(data)
+          .then(() => {
+            data.formOptions = {};
+            dispatch({ type: UPDATE_<%= constantModuleName %>, payload: data });
+          });
+      } else {
+        return <%= serviceName %>.update(data)
+          .then(() => dispatch({ type: UPDATE_<%= constantModuleName %>, payload: data }));
+      }
     };
   };
 

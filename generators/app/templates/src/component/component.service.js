@@ -64,6 +64,28 @@ class <%= serviceClassName %> {
       this.exception.catcher(this.$filter('translate')(this.message.update.error))(err);
       return this.$q.reject();
     });
+
+  upload(data) {
+    const toPath = this.pathToRegexp.compile(resource.put.url);
+    const path = (undefined !== data.content.id) ? toPath({id: data.content.id}) : toPath();
+    const options = {
+      params: {
+        resource: path
+      }
+    };
+    if (process.env.NODE_ENV === 'development') {
+      options.basePath = __BASE_PATH__;
+    }
+    return this.rest.put('/helper/upload', { jsonData: JSON.stringify(data.content) }, data.formOptions.files, options)
+    .then(res => {
+      this.logger.success(this.$filter('translate')(this.message.update.success), res.data);
+      return res.data;
+    })
+    .catch(err => {
+      this.exception.catcher(this.$filter('translate')(this.message.update.error))(err);
+      return this.$q.reject();
+    });
+  }
   }
 }
 <%= serviceClassName %>.$inject = $inject;
