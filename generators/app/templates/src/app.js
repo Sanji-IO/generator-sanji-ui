@@ -23,6 +23,12 @@ app.controller('AppController', AppController);
 app.config(reduxHelperProvider => {
   reduxHelperProvider.configure({<%= moduleName %>}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 });
+app.run((session, socket) => {
+  session.setUserData({
+    role: 'admin'
+  });
+  socket.disconnect();
+})
 
 angular.element(document).ready(() => {
   angular.bootstrap(document.body, ['webapp']);
