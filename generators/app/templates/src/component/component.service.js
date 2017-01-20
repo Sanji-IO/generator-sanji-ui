@@ -64,6 +64,7 @@ class <%= serviceClassName %> {
       this.exception.catcher(this.$filter('translate')(this.message.update.error))(err);
       return this.$q.reject();
     });
+  }
 
   upload(data) {
     const toPath = this.pathToRegexp.compile(resource.put.url);
@@ -85,7 +86,6 @@ class <%= serviceClassName %> {
       this.exception.catcher(this.$filter('translate')(this.message.update.error))(err);
       return this.$q.reject();
     });
-  }
   }
 }
 <%= serviceClassName %>.$inject = $inject;
