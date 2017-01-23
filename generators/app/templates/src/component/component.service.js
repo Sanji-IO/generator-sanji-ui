@@ -76,6 +76,9 @@ class <%= serviceClassName %> {
     };
     if (process.env.NODE_ENV === 'development') {
       options.basePath = __BASE_PATH__;
+      options.headers = {
+        'mx-api-token': __API_TOKEN__
+      };
     }
     return this.rest.put('/helper/upload', { jsonData: JSON.stringify(data.content) }, data.formOptions.files, options)
     .then(res => {
