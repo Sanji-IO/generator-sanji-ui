@@ -28,7 +28,7 @@ app.run((session, socket) => {
     role: 'admin'
   });
   socket.disconnect();
-})
+});
 
 angular.element(document).ready(() => {
   angular.bootstrap(document.body, ['webapp']);
