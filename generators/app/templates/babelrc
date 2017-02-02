@@ -1,10 +1,25 @@
 {
-  "presets": ["es2015"],
-  "plugins": ["lodash"],
+  "presets": [
+    "es2015"
+  ],
+  "plugins": [
+    "lodash",
+    [
+      "angularjs-annotate",
+      {
+        "explicitOnly": true
+      }
+    ]
+  ],
   "env": {
     "test": {
       "plugins": [
-        ["__coverage__", {"ignore": "*.+(test|spec).*"}]
+        [
+          "__coverage__",
+          {
+            "ignore": "*.+(test|spec).*"
+          }
+        ]
       ]
     }
   }
