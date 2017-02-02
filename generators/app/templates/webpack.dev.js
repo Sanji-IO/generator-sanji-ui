@@ -16,7 +16,6 @@ config.entry = {
   ]
 };
 config.module.rules = [
-  {test: /\.js$/, use: 'ng-annotate-loader', exclude: /(node_modules)/, enforce: 'post'},
   {
     test: /\.scss/,
     use: ['style-loader', 'css-loader', 'postcss-loader', {
