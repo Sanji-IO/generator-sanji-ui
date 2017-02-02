@@ -5,14 +5,14 @@
   "description": "<%= description %>",
   "main": "index",
   "config": {
-    "ghooks": {
-      "pre-commit": "opt --in pre-commit --exec 'npm run validate'"
-    },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
   },
   "scripts": {
+    "precommit": "opt --in precommit --exec 'npm run validate'",
+    "commitmsg": "opt --in commitmsg --exec 'npm run checkcommit'",
+    "checkcommit": "validate-commit-msg",
     "validate": "npm run test:once && npm run check-coverage",
     "test": "cross-env NODE_ENV=test BABEL_ENV=test karma start",
     "test:e2e": "npm run protractor",
@@ -31,7 +31,7 @@
     "angular-mocks": "~1.5.0",
     "catw": "^1.0.1",
     "cpy-cli": "^1.0.1",
-    "sanji-common-devs-ui": "~1.0.4",
+    "sanji-common-devs-ui": "~3.0.0",
     "standard-version": "^4.0.0",
     "tar.gz": "^1.0.5"
   },
@@ -40,6 +40,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "sanji-core-ui": "~2.0.8"
+    "sanji-core-ui": "~2.0.9"
   }
 }

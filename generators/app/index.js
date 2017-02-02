@@ -272,6 +272,7 @@ module.exports = generators.Base.extend({
       this.template('_package.json', 'package.json');
       this.template('_travis.yml', '.travis.yml');
       this.template('editorconfig', '.editorconfig');
+      this.template('vcmrc', '.vcmrc');
       this.template('babelrc', '.babelrc');
       this.template('eslintrc', '.eslintrc');
       this.template('README.md');
