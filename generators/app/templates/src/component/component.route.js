@@ -7,7 +7,7 @@ export default routerHelper => {
   function getStates() {
     return [
       {
-        state: 'application',
+        state: '<%= uuid %>',
         config: {
           abstract: true,
           url: '/application',

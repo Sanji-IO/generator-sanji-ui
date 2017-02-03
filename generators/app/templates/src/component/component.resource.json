@@ -9,11 +9,17 @@
   "image": "http://placehold.it/220x150",
   "description": "<%= description %>",
   "route": {
-    "state": "application.<%= moduleName %>",
+    "state": "<%= uuid %>.<%= moduleName %>",
     "url": "/<%= moduleName %>"
   },
-  "authenticate": ["root", "admin", "user"],
-  "files": ["<%= appname %>.js"],
+  "authenticate": [
+    "root",
+    "admin",
+    "user"
+  ],
+  "files": [
+    "<%= appname %>.js"
+  ],
   "get": {
     "url": "<%= endpoint %>",
     "type": "<%= (isCollection) ? 'collection' : 'model' %>"
@@ -24,4 +30,3 @@
   },
   "fields": []
 }
-
