@@ -18,6 +18,7 @@ FILES = \
 	$(STAGING_DIR)/debian/copyright \
 	$(STAGING_DIR)/debian/rules \
   $(STAGING_DIR)/debian/postinst \
+	$(STAGING_DIR)/debian/postrm \
 	$(STAGING_DIR)/debian/source/format
 
 .PHONY: all build

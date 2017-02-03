@@ -164,8 +164,8 @@ module.exports = generators.Base.extend({
         this.serviceName = props.moduleName.toLowerCase() + 'Service';
         this.actionClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Action';
         this.actionName = props.moduleName.toLowerCase() + 'Action';
-        this.containerControllerClassName = _.capitalize(props.moduleName.toLowerCase())+ 'ContainerController';
-        this.controllerClassName = _.capitalize(props.moduleName.toLowerCase())+ 'Controller';
+        this.containerControllerClassName = _.capitalize(props.moduleName.toLowerCase()) + 'ContainerController';
+        this.controllerClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Controller';
         this.containerComponentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'ContainerComponent';
         this.containerComponentName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Container';
         this.windowComponentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'WindowComponent';
@@ -261,7 +261,7 @@ module.exports = generators.Base.extend({
       this.config.save();
     },
 
-    uuid: function() {
+    uuid: function () {
       this.uuid = this.options.uuid || uuid.v4();
     }
 
@@ -286,11 +286,12 @@ module.exports = generators.Base.extend({
       this.template('Makefile');
     },
 
-    debfiles: function() {
+    debfiles: function () {
       this.template('build-deb/Makefile');
       this.template('build-deb/debian/changelog');
       this.template('build-deb/debian/control');
       this.template('build-deb/debian/postinst');
+      this.template('build-deb/debian/postrm');
       this.copy('build-deb/debian/copyright');
       this.copy('build-deb/debian/compat');
       this.copy('build-deb/debian/rules');
@@ -306,7 +307,7 @@ module.exports = generators.Base.extend({
       this.copy('gitignore', '.gitignore');
     },
 
-    feature: function() {
+    feature: function () {
       this.template('features/component.feature');
       this.template('features/component.step.js');
     },
@@ -318,7 +319,7 @@ module.exports = generators.Base.extend({
       this.template('src/app.scss');
     },
 
-    component: function() {
+    component: function () {
       this.template('src/component/component.resource.json');
       this.template('src/component/component.route.js');
       this.template('src/component/component.i18n.js');
