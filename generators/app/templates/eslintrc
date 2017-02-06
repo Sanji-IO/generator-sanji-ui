@@ -1,35 +1,46 @@
 {
-  "parser": "babel-eslint",
-  "extends": "eslint:recommended",
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module"
-  },
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true,
-    "mocha": true,
-    "protractor": true
-  },
+  "extends": [
+    "kentcdodds/possible-errors",
+    "kentcdodds/es6/possible-errors",
+    "kentcdodds/es6/stylistic",
+    "kentcdodds/best-practices"
+  ],
   "globals": {
-    "angular": true,
+    "agular": true,
     "sinon": true,
     "expect": true,
     "__BASE_PATH__": true,
     "__API_TOKEN__": true
   },
   "rules": {
-    "indent": [
+    "no-console": "off",
+    "complexity": "off",
+    "no-return-assign": "off",
+    "babel/object-curly-spacing": "off",
+    "object-curly-spacing": [
       "error",
-      2,
+      "always"
+    ],
+    "semi-spacing": [
+      "error",
       {
-        "SwitchCase": 1
+        "before": false,
+        "after": true
       }
     ],
-    "quotes": [ 2, "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
-    "linebreak-style": [ 2, "unix" ],
-    "semi": [ 2, "always" ],
-    "no-console": 0
+    "semi": [
+      "error",
+      "never"
+    ],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "always-multiline"
+      }
+    ]
   }
 }

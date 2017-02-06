@@ -10,7 +10,9 @@
     }
   },
   "scripts": {
+    "format": "prettier-eslint 'src/**/*.js' 'index.js' --write --print-width=120",
     "precommit": "opt --in precommit --exec 'npm run validate'",
+    "postcommit": "opt --in postcommit --exec 'npm run format'",
     "commitmsg": "opt --in commitmsg --exec 'npm run checkcommit'",
     "checkcommit": "validate-commit-msg",
     "validate": "npm run test:once && npm run check-coverage",
@@ -31,7 +33,7 @@
     "angular-mocks": "~1.5.0",
     "catw": "^1.0.1",
     "cpy-cli": "^1.0.1",
-    "sanji-common-devs-ui": "^3.1.0",
+    "sanji-common-devs-ui": "^3.2.0",
     "standard-version": "^4.0.0",
     "tar.gz": "^1.0.5"
   },
