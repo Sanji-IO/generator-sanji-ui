@@ -123,6 +123,21 @@ module.exports = generators.Base.extend({
       }.bind(this));
     },
 
+    askForUuid: function () {
+      var done = this.async();
+
+      var prompts = [{
+        name: 'uuid',
+        message: 'Would you mind telling me UUID(e.g. fda9c0c5-dd93-4eff-b94f-326d47735b82) you have created before?'
+      }];
+
+      this._optionOrPrompt(prompts, function (props) {
+        this.uuid = props.uuid;
+        done();
+      }.bind(this));
+    },
+
+
     askForGeneratorName: function () {
       var done = this.async();
       var generatorName = extractGeneratorName(this.appname);
@@ -262,7 +277,7 @@ module.exports = generators.Base.extend({
     },
 
     uuid: function () {
-      this.uuid = this.options.uuid || uuid.v4();
+      this.uuid = this.uuid || uuid.v4();
     }
 
   },
