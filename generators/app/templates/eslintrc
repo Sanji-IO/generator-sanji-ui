@@ -1,9 +1,7 @@
 {
   "extends": [
     "kentcdodds/possible-errors",
-    "kentcdodds/es6/possible-errors",
-    "kentcdodds/es6/stylistic",
-    "kentcdodds/best-practices"
+    "kentcdodds/es6/possible-errors"
   ],
   "globals": {
     "agular": true,
@@ -13,34 +11,6 @@
     "__API_TOKEN__": true
   },
   "rules": {
-    "no-console": "off",
-    "complexity": "off",
-    "no-return-assign": "off",
-    "babel/object-curly-spacing": "off",
-    "object-curly-spacing": [
-      "error",
-      "always"
-    ],
-    "semi-spacing": [
-      "error",
-      {
-        "before": false,
-        "after": true
-      }
-    ],
-    "semi": [
-      "error",
-      "never"
-    ],
-    "comma-dangle": [
-      "error",
-      {
-        "arrays": "always-multiline",
-        "objects": "always-multiline",
-        "imports": "always-multiline",
-        "exports": "always-multiline",
-        "functions": "always-multiline"
-      }
-    ]
+    "no-console": "off"
   }
 }

@@ -54,17 +54,6 @@ export const <%= actionClassName %> = ($q, <%= serviceName %>) => {
 // Reducers
 //-------------------------------------------------------------------
 <% if (isCollection) { %>
-export const <%= moduleName %> = (state = [], {type, payload}) => {
-  switch (type) {
-    case GET_<%= constantModuleName %>:
-      return payload || state;
-    case UPDATE_<%= constantModuleName %>:
-      return state.map(data => item(data, {type, payload}));
-    default:
-      return state;
-  }
-};
-
 const item = (state, {type, payload}) => {
   switch (type) {
     case UPDATE_<%= constantModuleName %>:
@@ -72,6 +61,17 @@ const item = (state, {type, payload}) => {
         return state;
       }
       return Object.assign({}, state, payload);
+    default:
+      return state;
+  }
+};
+
+export const <%= moduleName %> = (state = [], {type, payload}) => {
+  switch (type) {
+    case GET_<%= constantModuleName %>:
+      return payload || state;
+    case UPDATE_<%= constantModuleName %>:
+      return state.map(data => item(data, {type, payload}));
     default:
       return state;
   }
