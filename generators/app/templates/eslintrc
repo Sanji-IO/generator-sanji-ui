@@ -4,7 +4,7 @@
     "kentcdodds/es6/possible-errors"
   ],
   "globals": {
-    "agular": true,
+    "angular": true,
     "sinon": true,
     "expect": true,
     "__BASE_PATH__": true,
