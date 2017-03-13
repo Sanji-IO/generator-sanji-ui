@@ -1,13 +1,13 @@
 <% if (isCollection) { %>
-<md-tabs md-dynamic-height md-border-bottom>
+<md-tabs md-dynamic-height md-border-bottom md-selected="$ctrl.selectedIndex">
   <md-tab ng-repeat="tab in $ctrl.tabs track by $index" label="{{::tab.title}}" aria-label="{{::tab.title}}">
-    <form ng-submit="$ctrl.save(tab)"
+    <form ng-if="$ctrl.selectedIndex === $index" ng-submit="$ctrl.save(tab)"
       role="form" layout="column" layout-padding novalidate>
         <formly-form
-        model="tab.content" options="tab.formOptions" fields="tab.fields" form="tab.form">
+        model="tab.content" options="tab.formOptions" fields="tab.fields" form="tabform">
           <div layout layout-align="end center">
             <md-button type="submit" class="md-raised md-primary" aria-label="Submit"
-            ng-disabled="tab.form.$invalid">
+            ng-disabled="tabform.$invalid">
               <sapn translate="<%= constantModuleName %>_FORM_SAVE"></span>
             </md-button>
           </div>
