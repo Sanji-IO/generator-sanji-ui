@@ -7,7 +7,7 @@
         model="tab.content" options="tab.formOptions" fields="tab.fields" form="tabform">
           <div layout layout-align="end center">
             <md-button type="submit" class="md-raised md-primary" aria-label="Submit"
-            ng-disabled="tabform.$invalid">
+            ng-disabled="tabform.$invalid || !$ctrl.isAuthorized(['root', 'admin'])">
               <sapn translate="<%= constantModuleName %>_FORM_SAVE"></span>
             </md-button>
           </div>
@@ -23,7 +23,8 @@
     options="$ctrl.data.formOptions"
     form="$ctrl.form">
     <div layout layout-align="end center">
-      <md-button type="submit" class="md-raised md-primary" aria-label="Submit" ng-disabled="$ctrl.form.$invalid">
+      <md-button type="submit" class="md-raised md-primary" aria-label="Submit"
+      ng-disabled="$ctrl.form.$invalid || !$ctrl.isAuthorized(['root', 'admin'])">
         <sapn translate="<%= constantModuleName %>_FORM_SAVE"></span>
       </md-button>
     </div>

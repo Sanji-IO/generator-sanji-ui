@@ -7,7 +7,8 @@ const <%= componentClassName %> = {
     <% } else { %>
     data: '<',
     <% } %>
-    submitCallback: '&onSubmit'
+    submitCallback: '&onSubmit',
+    onAuthorized: '&'
   },
   template: require('./component.tpl.html'),
   controller: <%= controllerClassName %>

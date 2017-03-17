@@ -1,4 +1,4 @@
-const $inject = ['$scope', '$ngRedux', 'sanjiWindowService', '<%= actionName %>'];
+const $inject = ['$scope', '$ngRedux', 'sanjiWindowService', '<%= actionName %>', 'auth'];
 const WINDOW_ID = '<%= appname %>';
 class <%= containerControllerClassName %> {
   constructor(...injects) {
@@ -21,6 +21,10 @@ class <%= containerControllerClassName %> {
     return {
       data: state.<%= moduleName %>
     };
+  }
+
+  onAuthorized(event) {
+    return this.auth.isAuthorized(event.roles);
   }
 
   onRefresh(event, args) {
