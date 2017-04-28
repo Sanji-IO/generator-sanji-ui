@@ -33,7 +33,7 @@
     "angular-mocks": "~1.5.0",
     "catw": "^1.0.1",
     "cpy-cli": "^1.0.1",
-    "sanji-common-devs-ui": "^5.0.0",
+    "sanji-common-devs-ui": "^5.1.0",
     "standard-version": "^4.0.0",
     "tar.gz": "^1.0.5"
   },
@@ -42,6 +42,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "sanji-core-ui": "^3.1.7"
+    "sanji-core-ui": "^3.1.14"
   }
 }
