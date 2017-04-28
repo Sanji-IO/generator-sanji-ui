@@ -1,6 +1,6 @@
 {
   "name": "generator-sanji-ui",
-  "version": "4.4.6",
+  "version": "4.4.7",
   "description": "Sanji UI generator",
   "license": "MIT",
   "main": "app/index.js",
