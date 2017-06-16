@@ -12,8 +12,16 @@ demo/
 .gitattributes
 .travis.yml
 .yo-rc.json
+.editorconfig
+.gitlab-ci.yml
+.vcmrc
 *.deb
 coverage
 *.tar
 *.tar.gz
 *.zip
+*.md
+yarn.lock
+karma.config.js
+webpack.*.js
+
