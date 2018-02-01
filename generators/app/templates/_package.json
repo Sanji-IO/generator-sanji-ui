@@ -16,32 +16,30 @@
     "commitmsg": "opt --in commitmsg --exec 'npm run checkcommit'",
     "checkcommit": "validate-commit-msg",
     "validate": "npm run test:once && npm run check-coverage",
-    "test": "cross-env NODE_ENV=test BABEL_ENV=test karma start",
-    "test:e2e": "npm run protractor",
-    "test:once": "cross-env BABEL_ENV=test karma start",
-    "protractor": "protractor protractor.conf.js",
     "prebuild": "rimraf <%= uuid %> && mkdir <%= uuid %>",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.build.js --display-modules",
-    "postbuild": "cpy ./src/component/component.resource.json ./<%= uuid %>/ && targz compress ./<%= uuid %> <%= uuid %>.tar.gz",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.build.js",
+    "postbuild":
+      "cpy ./src/component/component.resource.json ./<%= uuid %>/ && tar czvf <%= uuid %>.tar.gz ./<%= uuid %>",
     "commit": "git-cz",
     "check-coverage": "istanbul check-coverage --statements 75 --branches 75 --functions 75 --lines 75",
     "report-coverage": "catw ./coverage/lcov.info -o | codecov",
     "start": "cross-env NODE_ENV=development node server/dev-server.js",
+    "start:bg": "npm start &",
+    "test:e2e:watch": "run-s start:bg cypress",
+    "test:e2e:ci": "run-s start:bg cypress:ci",
+    "cypress:ci": "cypress run --browser chrome --reporter mochawesome",
+    "cypress": "cypress open",
     "release": "standard-version"
   },
   "devDependencies": {
-    "angular-mocks": "~1.5.0",
-    "catw": "^1.0.1",
-    "cpy-cli": "^1.0.1",
-    "sanji-common-devs-ui": "^5.1.0",
-    "standard-version": "^4.0.0",
-    "tar.gz": "^1.0.5"
+    "angular-mocks": "~1.6.8",
+    "sanji-core-ui": "^4.0.0",
+    "sanji-common-devs-ui": "^8.1.0",
+    "standard-version": "^4.3.0"
   },
-  "keywords": [
-    "sanji"
-  ],
+  "keywords": ["sanji"],
   "license": "MIT",
-  "dependencies": {
-    "sanji-core-ui": "^3.6.1"
+  "peerDependencies": {
+    "sanji-core-ui": "^4.0.0"
   }
 }

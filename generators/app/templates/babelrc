@@ -1,24 +1,16 @@
 {
   "presets": [
     [
-      "es2015",
-      {
-        "modules": false
-      }
-    ],
-    [
       "env",
       {
+        "modules": false,
         "targets": {
-          "browsers": [
-            "last 2 versions"
-          ]
+          "browsers": ["last 2 versions"]
         }
       }
     ]
   ],
   "plugins": [
-    "lodash",
     [
       "angularjs-annotate",
       {

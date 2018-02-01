@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV;
 const DEV_BASE_PATH = process.env.BASE_PATH;
 const API_TOKEN = process.env.API_TOKEN;
@@ -18,6 +17,7 @@ const config = {
       'angular-material-icons.css': nodeRoot + '/angular-material-icons/angular-material-icons.css',
       'angular-material-data-table.css': nodeRoot + '/angular-material-data-table/dist/md-data-table.css',
       'angular-sanji-window.css': nodeRoot + '/angular-sanji-window/dist/angular-sanji-window.css',
+      'easy-pie-chart': nodeRoot + '/easy-pie-chart/dist/angular.easypiechart.js',
       'toastr.css': nodeRoot + '/toastr/build/toastr.css'
     },
     extensions: ['.js', '.json', 'html', 'scss', 'css']
@@ -27,18 +27,20 @@ const config = {
       { test: /\.js$/, use: 'eslint-loader', exclude: /node_modules/, enforce: 'pre' },
       { test: /\.js$/, use: 'babel-loader?cacheDirectory', exclude: /(node_modules)/ },
       { test: require.resolve('jquery'), loader: 'expose-loader?$!expose-loader?jQuery' },
-      { test: /\.json$/, use: 'json-loader', exclude: /node_modules/ },
-      { test: /\.html$/, use: 'ng-cache-loader?prefix=[dir]/[dir]', exclude: [/node_modules/, path.join(__dirname, '/src/index.html')] }
+      {
+        test: /\.html$/,
+        use: 'ng-cache-loader?prefix=[dir]/[dir]',
+        exclude: [/node_modules/, path.join(__dirname, '/src/index.html')]
+      }
     ]
   },
   plugins: [
-    new ProgressBarPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify(NODE_ENV || 'development')
+        NODE_ENV: JSON.stringify(NODE_ENV || 'development')
       },
-      __BASE_PATH__: JSON.stringify(DEV_BASE_PATH) || '"<%= apiBasePath %>"',
-      __API_TOKEN__: JSON.stringify(API_TOKEN) || '""'
+      __BASE_PATH__: JSON.stringify(DEV_BASE_PATH || '<%= apiBasePath %>'),
+      __API_TOKEN__: JSON.stringify(API_TOKEN || '')
     })
   ]
 };

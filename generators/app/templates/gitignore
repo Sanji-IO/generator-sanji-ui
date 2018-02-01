@@ -8,3 +8,5 @@ npm-debug.log
 demo
 coverage/
 .opt-in
+<%= uuid %>*
+dist/

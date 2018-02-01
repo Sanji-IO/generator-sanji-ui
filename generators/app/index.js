@@ -11,11 +11,8 @@ var _s = require('underscore.string');
 var uuid = require('uuid');
 var optionOrPrompt = require('yeoman-option-or-prompt');
 
-var proxy = process.env.http_proxy ||
-  process.env.HTTP_PROXY ||
-  process.env.https_proxy ||
-  process.env.HTTPS_PROXY ||
-  null;
+var proxy =
+  process.env.http_proxy || process.env.HTTP_PROXY || process.env.https_proxy || process.env.HTTPS_PROXY || null;
 
 var githubOptions = {
   version: '3.0.0'
@@ -40,7 +37,7 @@ if (process.env.GITHUB_TOKEN) {
   });
 }
 
-var extractGeneratorName = function (appname) {
+var extractGeneratorName = function(appname) {
   var match = appname.match(/^sanji-(.+)/);
 
   if (match && match.length === 2) {
@@ -56,22 +53,25 @@ var emptyGithubRes = {
   html_url: ''
 };
 
-var githubUserInfo = function (name, cb, log) {
-  github.user.getFrom({
-    user: name
-  }, function (err, res) {
-    if (err) {
-      log.error('Cannot fetch your github profile. Make sure you\'ve typed it correctly.');
-      res = emptyGithubRes;
-    }
+var githubUserInfo = function(name, cb, log) {
+  github.user.getFrom(
+    {
+      user: name
+    },
+    function(err, res) {
+      if (err) {
+        log.error("Cannot fetch your github profile. Make sure you've typed it correctly.");
+        res = emptyGithubRes;
+      }
 
-    cb(JSON.parse(JSON.stringify(res)));
-  });
+      cb(JSON.parse(JSON.stringify(res)));
+    }
+  );
 };
 
 module.exports = generators.Base.extend({
   _optionOrPrompt: optionOrPrompt,
-  constructor: function () {
+  constructor: function() {
     generators.Base.apply(this, arguments);
 
     this.option('flat', {
@@ -82,193 +82,242 @@ module.exports = generators.Base.extend({
     });
   },
 
-  initializing: function () {
+  initializing: function() {
     this.pkg = require('../../package.json');
-    this.currentYear = (new Date()).getFullYear();
+    this.currentYear = new Date().getFullYear();
     this.config.set('structure', this.options.flat ? 'flat' : 'nested');
     this.generatorsPrefix = this.options.flat ? '' : 'generators/';
     this.appGeneratorDir = this.options.flat ? 'app' : 'generators';
   },
 
   prompting: {
-    askFor: function () {
+    askFor: function() {
       var done = this.async();
 
       this.log(yosay('Create your own ' + chalk.red('Sanji UI') + ' with superpowers!'));
 
-      var prompts = [{
-        name: 'realname',
-        message: 'Would you mind telling me your username?',
-        default: 'someuser'
-      }];
+      var prompts = [
+        {
+          name: 'realname',
+          message: 'Would you mind telling me your username?',
+          default: 'someuser'
+        }
+      ];
 
-      this._optionOrPrompt(prompts, function (props) {
-        this.realname = props.realname;
-        done();
-      }.bind(this));
+      this._optionOrPrompt(
+        prompts,
+        function(props) {
+          this.realname = props.realname;
+          done();
+        }.bind(this)
+      );
     },
 
-    askForEmail: function () {
+    askForEmail: function() {
       var done = this.async();
 
-      var prompts = [{
-        name: 'email',
-        message: 'Would you mind telling me your email?',
-        default: 'hello@world.io'
-      }];
+      var prompts = [
+        {
+          name: 'email',
+          message: 'Would you mind telling me your email?',
+          default: 'hello@world.io'
+        }
+      ];
 
-      this._optionOrPrompt(prompts, function (props) {
-        this.email = props.email;
-        done();
-      }.bind(this));
+      this._optionOrPrompt(
+        prompts,
+        function(props) {
+          this.email = props.email;
+          done();
+        }.bind(this)
+      );
     },
 
-    askForUuid: function () {
+    askForUuid: function() {
       var done = this.async();
 
-      var prompts = [{
-        name: 'uuid',
-        message: 'Would you mind telling me UUID(e.g. fda9c0c5-dd93-4eff-b94f-326d47735b82) you have created before?'
-      }];
+      var prompts = [
+        {
+          name: 'uuid',
+          message: 'Would you mind telling me UUID(e.g. fda9c0c5-dd93-4eff-b94f-326d47735b82) you have created before?'
+        }
+      ];
 
-      this._optionOrPrompt(prompts, function (props) {
-        this.uuid = props.uuid;
-        done();
-      }.bind(this));
+      this._optionOrPrompt(
+        prompts,
+        function(props) {
+          this.uuid = props.uuid;
+          done();
+        }.bind(this)
+      );
     },
 
-
-    askForGeneratorName: function () {
+    askForGeneratorName: function() {
       var done = this.async();
       var generatorName = extractGeneratorName(this.appname);
 
-      var prompts = [{
-        name: 'generatorName',
-        message: 'What\'s the base name of your project? Prefix "sanji-" is already exist.',
-        default: generatorName
-      }];
-
-      this._optionOrPrompt(prompts, function (props) {
-        if (props.askNameAgain) {
-          return this.prompting.askForGeneratorName.call(this);
+      var prompts = [
+        {
+          name: 'generatorName',
+          message: 'What\'s the base name of your project? Prefix "sanji-" is already exist.',
+          default: generatorName
         }
+      ];
 
-        this.generatorName = props.generatorName;
-        this.appname = _s.slugify('sanji-' + this.generatorName);
+      this._optionOrPrompt(
+        prompts,
+        function(props) {
+          if (props.askNameAgain) {
+            return this.prompting.askForGeneratorName.call(this);
+          }
 
-        done();
-      }.bind(this));
+          this.generatorName = props.generatorName;
+          this.appname = _s.slugify('sanji-' + this.generatorName);
+
+          done();
+        }.bind(this)
+      );
     },
 
-    askForNgModuleName: function () {
+    askForNgModuleName: function() {
       var done = this.async();
 
-      var prompts = [{
-        name: 'moduleName',
-        message: 'What\'s the ngModule name of your component?',
-        default: this.generatorName
-      }];
+      var prompts = [
+        {
+          name: 'moduleName',
+          message: "What's the ngModule name of your component?",
+          default: this.generatorName
+        }
+      ];
 
-      this._optionOrPrompt(prompts, function (props) {
-        this.moduleName = props.moduleName.toLowerCase();
-        this.ngModuleName = 'sanji.' + props.moduleName;
-        this.windowName = _.capitalize(props.moduleName.toLowerCase());
-        this.constantModuleName = props.moduleName.toUpperCase();
-        this.libraryName = 'sj' + _.capitalize(props.moduleName.toLowerCase());
-        this.serviceClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Service';
-        this.serviceName = props.moduleName.toLowerCase() + 'Service';
-        this.actionClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Action';
-        this.actionName = props.moduleName.toLowerCase() + 'Action';
-        this.containerControllerClassName = _.capitalize(props.moduleName.toLowerCase()) + 'ContainerController';
-        this.controllerClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Controller';
-        this.containerComponentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'ContainerComponent';
-        this.containerComponentName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Container';
-        this.windowComponentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'WindowComponent';
-        this.windowComponentName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Window';
-        this.componentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Component';
-        this.componentName = 'sanji' + _.capitalize(props.moduleName.toLowerCase());
-        this.componentTplName = 'sanji-' + props.moduleName.toLowerCase();
-        done();
-      }.bind(this));
+      this._optionOrPrompt(
+        prompts,
+        function(props) {
+          this.moduleName = props.moduleName.toLowerCase();
+          this.ngModuleName = 'sanji.' + props.moduleName;
+          this.windowName = _.capitalize(props.moduleName.toLowerCase());
+          this.constantModuleName = props.moduleName.toUpperCase();
+          this.libraryName = 'sj' + _.capitalize(props.moduleName.toLowerCase());
+          this.serviceClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Service';
+          this.serviceName = props.moduleName.toLowerCase() + 'Service';
+          this.actionClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Action';
+          this.actionName = props.moduleName.toLowerCase() + 'Action';
+          this.containerControllerClassName = _.capitalize(props.moduleName.toLowerCase()) + 'ContainerController';
+          this.controllerClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Controller';
+          this.containerComponentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'ContainerComponent';
+          this.containerComponentName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Container';
+          this.windowComponentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'WindowComponent';
+          this.windowComponentName = 'sanji' + _.capitalize(props.moduleName.toLowerCase()) + 'Window';
+          this.componentClassName = _.capitalize(props.moduleName.toLowerCase()) + 'Component';
+          this.componentName = 'sanji' + _.capitalize(props.moduleName.toLowerCase());
+          this.componentTplName = 'sanji-' + props.moduleName.toLowerCase();
+          done();
+        }.bind(this)
+      );
     },
 
-    askForVersion: function () {
+    askForVersion: function() {
       var done = this.async();
 
-      var prompts = [{
-        name: 'version',
-        message: 'What is your semver version?',
-        default: '1.0.0'
-      }];
+      var prompts = [
+        {
+          name: 'version',
+          message: 'What is your semver version?',
+          default: '1.0.0'
+        }
+      ];
 
-      this._optionOrPrompt(prompts, function (props) {
-        this.version = props.version;
-        done();
-      }.bind(this));
+      this._optionOrPrompt(
+        prompts,
+        function(props) {
+          this.version = props.version;
+          done();
+        }.bind(this)
+      );
     },
 
-    askForResource: function () {
+    askForResource: function() {
       var done = this.async();
 
-      var prompts = [{
-        type: 'confirm',
-        name: 'isCollection',
-        message: 'API resource is collection?',
-        default: true
-      }];
+      var prompts = [
+        {
+          type: 'confirm',
+          name: 'isCollection',
+          message: 'API resource is collection?',
+          default: true
+        }
+      ];
 
-      this._optionOrPrompt(prompts, function (props) {
-        this.isCollection = props.isCollection;
-        done();
-      }.bind(this));
+      this._optionOrPrompt(
+        prompts,
+        function(props) {
+          this.isCollection = props.isCollection;
+          done();
+        }.bind(this)
+      );
     },
 
-    askForBasePath: function () {
+    askForBasePath: function() {
       var done = this.async();
 
-      var prompts = [{
-        name: 'basePath',
-        message: 'What\'s your api base path?',
-        default: '/api/v1'
-      }];
+      var prompts = [
+        {
+          name: 'basePath',
+          message: "What's your api base path?",
+          default: '/api/v1'
+        }
+      ];
 
-      this._optionOrPrompt(prompts, function (props) {
-        this.apiBasePath = props.basePath;
-        done();
-      }.bind(this));
+      this._optionOrPrompt(
+        prompts,
+        function(props) {
+          this.apiBasePath = props.basePath;
+          done();
+        }.bind(this)
+      );
     },
 
-    askForEndpoint: function () {
+    askForEndpoint: function() {
       var done = this.async();
 
-      var prompts = [{
-        name: 'endpoint',
-        message: 'What\'s your endpoint?'
-      }];
+      var prompts = [
+        {
+          name: 'endpoint',
+          message: "What's your endpoint?"
+        }
+      ];
 
-      this._optionOrPrompt(prompts, function (props) {
-        this.endpoint = props.endpoint;
-        done();
-      }.bind(this));
+      this._optionOrPrompt(
+        prompts,
+        function(props) {
+          this.endpoint = props.endpoint;
+          done();
+        }.bind(this)
+      );
     },
 
-    askForDescription: function () {
+    askForDescription: function() {
       var done = this.async();
 
-      var prompts = [{
-        name: 'description',
-        message: 'Description for this compoent'
-      }];
+      var prompts = [
+        {
+          name: 'description',
+          message: 'Description for this compoent'
+        }
+      ];
 
-      this._optionOrPrompt(prompts, function (props) {
-        this.description = props.description;
-        done();
-      }.bind(this));
+      this._optionOrPrompt(
+        prompts,
+        function(props) {
+          this.description = props.description;
+          done();
+        }.bind(this)
+      );
     }
   },
 
   configuring: {
-    enforceFolderName: function () {
+    enforceFolderName: function() {
       if (this.appname !== _.last(this.destinationRoot().split(path.sep))) {
         this.destinationRoot(this.appname);
       }
@@ -276,32 +325,29 @@ module.exports = generators.Base.extend({
       this.config.save();
     },
 
-    uuid: function () {
+    uuid: function() {
       this.uuid = this.uuid || uuid.v4();
     }
-
   },
 
   writing: {
-    projectfiles: function () {
+    projectfiles: function() {
       this.template('_package.json', 'package.json');
-      this.template('_travis.yml', '.travis.yml');
       this.template('editorconfig', '.editorconfig');
       this.template('vcmrc', '.vcmrc');
       this.template('babelrc', '.babelrc');
       this.template('eslintrc', '.eslintrc');
+      this.template('postcss.config.js');
       this.template('README.md');
       this.template('index.js');
       this.template('webpack.config.js');
       this.template('webpack.build.js');
       this.template('webpack.dev.js');
       this.template('webpack.test.js');
-      this.template('karma.conf.js');
-      this.template('protractor.conf.js');
       this.template('Makefile');
     },
 
-    debfiles: function () {
+    debfiles: function() {
       this.template('build-deb/Makefile');
       this.template('build-deb/debian/changelog');
       this.template('build-deb/debian/control');
@@ -313,28 +359,23 @@ module.exports = generators.Base.extend({
       this.copy('build-deb/debian/source/format');
     },
 
-    npmfiles: function () {
+    npmfiles: function() {
       this.copy('npmignore', '.npmignore');
     },
 
-    gitfiles: function () {
+    gitfiles: function() {
       this.copy('gitattributes', '.gitattributes');
-      this.copy('gitignore', '.gitignore');
+      this.template('gitignore', '.gitignore');
     },
 
-    feature: function () {
-      this.template('features/component.feature');
-      this.template('features/component.step.js');
-    },
-
-    app: function () {
+    app: function() {
       this.template('src/index.html');
       this.template('src/app.js');
       this.template('src/app.test.js');
       this.template('src/app.scss');
     },
 
-    component: function () {
+    component: function() {
       this.template('src/component/component.resource.json');
       this.template('src/component/component.route.js');
       this.template('src/component/component.i18n.js');
@@ -359,17 +400,6 @@ module.exports = generators.Base.extend({
           actionName: this.actionName,
           moduleName: this.moduleName,
           constantModuleName: this.constantModuleName
-        }
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('src/component/component.tpl.html'),
-        this.destinationPath(this.generatorsPrefix, 'src/component/component.tpl.html'),
-        {
-          appname: this.appname,
-          constantModuleName: this.constantModuleName,
-          componentTplName: this.componentTplName,
-          isCollection: this.isCollection
         }
       );
 
@@ -431,6 +461,10 @@ module.exports = generators.Base.extend({
         {
           controllerClassName: this.controllerClassName,
           componentClassName: this.componentClassName,
+          isCollection: this.isCollection,
+          appname: this.appname,
+          constantModuleName: this.constantModuleName,
+          componentTplName: this.componentTplName,
           isCollection: this.isCollection
         }
       );
@@ -461,7 +495,7 @@ module.exports = generators.Base.extend({
       );
     },
 
-    server: function () {
+    server: function() {
       this.fs.copyTpl(
         this.templatePath('server/dev-server.js'),
         this.destinationPath(this.generatorsPrefix, 'server/dev-server.js'),
@@ -473,7 +507,7 @@ module.exports = generators.Base.extend({
     }
   },
 
-  install: function () {
+  install: function() {
     this.installDependencies({ skipInstall: this.options['skip-install'] || false, bower: false });
   }
 });

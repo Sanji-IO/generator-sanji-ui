@@ -1,16 +1,41 @@
 {
   "extends": [
     "kentcdodds/possible-errors",
-    "kentcdodds/es6/possible-errors"
+    "kentcdodds/es6/possible-errors",
+    "kentcdodds/es6/stylistic",
+    "kentcdodds/best-practices",
+    "prettier"
   ],
+  "plugins": ["prettier"],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "protractor": true
+  },
   "globals": {
     "angular": true,
     "sinon": true,
     "expect": true,
+    "Offline": true,
     "__BASE_PATH__": true,
-    "__API_TOKEN__": true
+    "__API_TOKEN__": true,
+    "__VERSION__": true
   },
   "rules": {
-    "no-console": "off"
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 120,
+        "singleQuote": true,
+        "trailingComma": "none"
+      }
+    ],
+    "no-console": "off",
+    "complexity": "off",
+    "no-return-assign": "off",
+    "babel/object-curly-spacing": "off",
+    "babel/semi": "off"
   }
 }
