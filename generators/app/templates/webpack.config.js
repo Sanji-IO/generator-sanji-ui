@@ -24,7 +24,7 @@ const config = {
   },
   module: {
     rules: [
-      { test: /\.js$/, use: 'eslint-loader', exclude: /node_modules/, enforce: 'pre' },
+      { test: /\.js$/, use: 'eslint-loader?fix', exclude: /node_modules/, enforce: 'pre' },
       { test: /\.js$/, use: 'babel-loader?cacheDirectory', exclude: /(node_modules)/ },
       { test: require.resolve('jquery'), loader: 'expose-loader?$!expose-loader?jQuery' },
       {
